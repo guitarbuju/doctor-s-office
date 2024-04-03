@@ -7,6 +7,7 @@ import Appointments from './pages/appoinments/Appointments';
 import './App.css';
 import Welcome from './pages/homePage/Welcome';
 import PatientSearchByDni from './pages/patients/PatientSearchByDni';
+import AppoinmentList from './pages/appoinments/AppoinmentList';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/patients' element={<Patients/>}/>
         <Route path='/patients/dni' element={<PatientSearchByDni/>}/>
         <Route path = '/appointments' element ={<Appointments/>}/>
+        <Route path = '/appointments/list' element ={<AppoinmentList/>}/>
       </Routes>
     </>
   )

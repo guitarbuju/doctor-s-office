@@ -32,3 +32,16 @@ export const fetchAPersonData = async ( url, id) => {
     }
   };
   
+export const patchData = async(url,data)=>{
+  const patchURL=`${url}/${data}`;
+  console.log(patchURL,data)
+  try{
+    const response = await axios.put(patchURL);
+    return response.data;
+
+  }catch(error){
+console.error(error);
+  }
+
+}  
+
