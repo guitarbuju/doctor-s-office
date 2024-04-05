@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { postPersonData } from "../../../api/fetchData";
 import { useForm } from "react-hook-form";
-import ListTable from "../appointments/ListTable";
+import ListTable from "../create/ListTable";
 import { formatDate } from "../../../api/formatDate";
 import axios from "axios";
 

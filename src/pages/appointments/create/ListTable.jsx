@@ -1,6 +1,6 @@
 import { patchData } from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
-import patientIcon from "../../assets/icons8-patient-30.png";
+import patientIcon from "../../../assets/icons8-patient-30.png";
 
 const ListTable = ({ appointmentList, reloadAppointmentList }) => {
   console.log("este", appointmentList);
