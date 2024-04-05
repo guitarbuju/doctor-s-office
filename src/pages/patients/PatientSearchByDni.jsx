@@ -4,6 +4,7 @@ import FoundPatientInfoDataGrid from "./FoundPatientInfoDataGrid";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { usePatientsInfoStore } from "../../../store";
+import AppoinmentsByPatient from "../appointments/search/AppoinmentsByPatient";
 
 const PatientSearchByDni = () => {
   const storedPatientsInfo = usePatientsInfoStore(
@@ -30,7 +31,7 @@ const PatientSearchByDni = () => {
     storedPatientsInfo({
       dni: foundPatient?.data[0]?.dni,
       name: foundPatient?.data[0]?.first_name,
-      lastName:foundPatient?.data[0]?.last_name,
+      lastName: foundPatient?.data[0]?.last_name,
     });
   }
 
@@ -76,7 +77,10 @@ const PatientSearchByDni = () => {
       </form>
       <div className="w-full">
         {foundPatient && !error && (
-          <FoundPatientInfoDataGrid foundPatient={foundPatient} />
+          <div className="flex flex-col">
+            <FoundPatientInfoDataGrid foundPatient={foundPatient} />
+            <AppoinmentsByPatient foundPatient={foundPatient}/>
+          </div>
         )}
       </div>
       <div className="flex gap-2 justify-center align-middle mt-4">
