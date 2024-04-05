@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import InputSelector from "../doctors/InputSelector";
-import { postPersonData } from "../../api/fetchData";
-import { usePatientsInfoStore } from "../../../store";
+import InputSelector from "../../doctors/InputSelector";
+import { postPersonData } from "../../../api/fetchData";
+import { usePatientsInfoStore } from "../../../../store";
 import { Link } from "react-router-dom";
 
 
@@ -99,6 +99,11 @@ const Appointments = () => {
             to='/'
             className="px-8 py-3 font-semibold rounded-md bg-transparent border-2 border-white">
               Home
+            </Link>
+            <Link 
+            to='/appointments/list'
+            className="px-8 py-3 font-semibold rounded-md bg-transparent border-2 border-white">
+              Appointments
             </Link>
             
           </div>
