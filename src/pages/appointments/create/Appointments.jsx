@@ -19,9 +19,9 @@ const Appointments = () => {
   const handleDoctorSelection = (doctor) => {
     setSelectedDoctor(doctor);
   };
-  // const url = `${import.meta.env.VITE_BASE_URL}/appointments`;
+   const url = `${import.meta.env.VITE_BASE_URL}/appointments`;
 
-  const url = "http://localhost:3500/appointments";
+  // const url = "http://localhost:3500/appointments";
 
   console.log(patientsInfo);
 
