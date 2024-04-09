@@ -42,8 +42,23 @@ export const patchData = async(url,data)=>{
   }catch(error){
 console.error(error);
   }
+  
 
 }  
+export const postPersonDni = async(url,data)=>{
+  const patchURL=`${url}/${data}`;
+  console.log(patchURL,data)
+  try{
+    const response = await axios.post(patchURL);
+    return response.data;
+
+  }catch(error){
+console.error(error);
+  }
+
+}
+
+
 export const getDniData = async(url,data)=>{
   const patchURL=`${url}/${data}`;
   console.log(patchURL,data)

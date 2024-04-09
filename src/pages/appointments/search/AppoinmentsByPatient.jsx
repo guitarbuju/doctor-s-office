@@ -1,5 +1,5 @@
 import { useState, useEffect , useCallback} from "react";
-import { getDniData, patchData } from "../../../api/fetchData";
+import { getDniData, postPersonDni } from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
 import patientIcon from "../../../assets/icons8-patient-30.png";
 
@@ -10,12 +10,12 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
 
 
 
-  const urlPatch = `${import.meta.env.VITE_BASE_URL}/appointments/complete`;
+  const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
 
   const admitPatient = async (id) => {
     try {
-      const patchAppointmentId = await patchData(urlPatch, id);
-      console.log(patchAppointmentId);
+      const postIdforAdmmission = await postPersonDni(urlPatch, id);
+      console.log(postIdforAdmmission);
       getPatientsAppointment();
     } catch (error) {
       console.error(error);
