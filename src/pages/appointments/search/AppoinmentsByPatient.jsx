@@ -5,33 +5,25 @@ import patientIcon from "../../../assets/icons8-patient-30.png";
 import AdmitAppointmentModal from "./modals/AdmitAppointmentModal";
 
 const AppoinmentsByPatient = ({ foundPatient }) => {
+
+  //State variables
+  const [foundAppointmentForModal, setFoundAppointmentForModal]= useState({})
   const [foundAppointments, setFoundAppointments] = useState({});
   console.log(foundAppointments);
+
+  
   //Modal handler for admission button
   const[isOpen, setIsOpen] = useState(false);
   const[admissionId,setAdmissionId]=useState('');
- 
-
-
-
-  // const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
-
-  // const admitPatient = async (id) => {
-  //   try {
-  //     const postIdforAdmmission = await postPersonDni(urlPatch, id);
-  //     console.log(postIdforAdmmission);
-  //     getPatientsAppointment();
-  //     setIsOpen(true)
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
+  
   const clickHandler = (id)=>{
     setIsOpen(true);
     setAdmissionId(id)
-
+    const foundAppointment = foundAppointments?.data?.find((app) => app.appointment_id === id);
+    setFoundAppointmentForModal(foundAppointment);
   }
+
+  //get patients updated grid
 
   const getPatientsAppointment = useCallback(async () => {
     try {
@@ -95,7 +87,6 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                         {!app.completed && (
                           <button
                             type="button"
-                            // onClick={() => admitPatient(app.appointment_id)}
                             onClick={()=>clickHandler(app.appointment_id)}
                             className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
                           >
@@ -121,6 +112,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
               setIsOpen={setIsOpen} 
               admissionId={admissionId}
               getPatientsAppointment ={getPatientsAppointment }
+              foundAppointmentForModal={foundAppointmentForModal}
               />
             </div>
           </div>
