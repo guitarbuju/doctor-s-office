@@ -15,7 +15,7 @@ function AdmitAppointmentModal({
 
   /////
   const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
-  console.log("found app modal", foundAppointmentForModal);
+//   console.log("found app modal", foundAppointmentForModal);
 
   const admitPatient = async (id) => {
     try {
@@ -28,37 +28,49 @@ function AdmitAppointmentModal({
     }
   };
 
+  const closeModals =()=>{
+    setIsOpen(false);
+    setIsResponseVisible(false)
+  }
+
   return (
     <Dialog
       open={isOpen}
       onClose={() => setIsOpen(false)}
-      className="relative z-50 border-blue-700  p-10 text-sm"
+      className="relative z-50 border-blue-700  p-10 text-sm "
     >
+    <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="fixed inset-0 flex w-screen items-center justify-center p-10">
-        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-          <Dialog.Title>
+        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all h-52">
+          <Dialog.Title className='mt-8'>
              Admission for {foundAppointmentForModal.patient_full_name}{" "}
             with Dr.{foundAppointmentForModal.doctor_full_name}
           </Dialog.Title>
         { !isResponseVisible ?
           <Dialog.Description
-          className="text-lg font-medium leading-6 text-gray-900">
+          className="text-lg font-medium leading-6 text-gray-900 mt-2">
             Are you sure you want to admit this patient?
             <button
           className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-2"
           onClick={() => admitPatient(admissionId)}>Admit Patient
           </button>
+          <button
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-2 ml-2"
+              onClick={() => closeModals()}
+            >
+              Close
+            </button>
           </Dialog.Description>
           :''}
           {
             isResponseVisible ?
             <Dialog.Description>
-            <p className="text-lg font-medium leading-6 text-gray-900">
+            <span className="text-lg font-medium leading-6 text-gray-900">
               Admission created successfully...
-            </p>
+            </span> <br />
             <button
               className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-2"
-              onClick={() => setIsOpen(false)}
+              onClick={() => closeModals()}
             >
               Close
             </button>

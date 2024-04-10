@@ -1,27 +1,29 @@
-import { useState, useEffect , useCallback} from "react";
-import { getDniData} from "../../../api/fetchData";
+import { useState, useEffect, useCallback } from "react";
+import { getDniData } from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
 import patientIcon from "../../../assets/icons8-patient-30.png";
+import nullIcon from "../../../assets/icons8-x-50.png";
 import AdmitAppointmentModal from "./modals/AdmitAppointmentModal";
 
 const AppoinmentsByPatient = ({ foundPatient }) => {
-
   //State variables
-  const [foundAppointmentForModal, setFoundAppointmentForModal]= useState({})
+  const [foundAppointmentForModal, setFoundAppointmentForModal] = useState({});
+  const [admissionId, setAdmissionId] = useState("");
   const [foundAppointments, setFoundAppointments] = useState({});
   console.log(foundAppointments);
 
+  //Modal handler for admission and appointments buttons
+  const [isOpen, setIsOpen] = useState(false);
   
-  //Modal handler for admission button
-  const[isOpen, setIsOpen] = useState(false);
-  const[admissionId,setAdmissionId]=useState('');
-  
-  const clickHandler = (id)=>{
+
+  const clickHandler = (id) => {
     setIsOpen(true);
-    setAdmissionId(id)
-    const foundAppointment = foundAppointments?.data?.find((app) => app.appointment_id === id);
+    setAdmissionId(id);
+    const foundAppointment = foundAppointments?.data?.find(
+      (app) => app.appointment_id === id
+    );
     setFoundAppointmentForModal(foundAppointment);
-  }
+  };
 
   //get patients updated grid
 
@@ -35,11 +37,11 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
       console.error(error);
     }
   }, [foundPatient]);
-  
+
   useEffect(() => {
     getPatientsAppointment();
   }, [foundPatient, getPatientsAppointment]);
-  
+
   return (
     <>
       <div>
@@ -52,16 +54,12 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
               <table className="w-full p-6 text-xs text-left whitespace-nowrap">
                 <thead>
                   <tr className=" text-sm ">
-                    <th className="p-3">Id</th>
-                    <th className="p-3">Date</th>
-                    <th className="p-3">Doctor</th>
-                    <th className=" p-3">Completed</th>
-                    <th className="w-2 text-center">
-                      Admit Patient
-                    </th>
-                    <th className="w-2 text-center">
-                      NULL
-                    </th>
+                    <th className="p-3 w-4">Id</th>
+                    <th className="p-3 w-6">Date</th>
+                    <th className="p-3 w-10">Doctor</th>
+                    <th className=" p-3 w-10">Completed</th>
+                    <th className="w-10 text-center">Admit Patient</th>
+                    <th className="w-2 text-center">NULL</th>
                   </tr>
                 </thead>
                 <tbody className="border-b border-gray-300">
@@ -83,36 +81,40 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                           <p className="text-lg text-gray-100">Pending</p>
                         )}
                       </td>
-                      <td className=" py-2 ">
+                      <td className=" py-2  ">
                         {!app.completed && (
                           <button
                             type="button"
-                            onClick={()=>clickHandler(app.appointment_id)}
+                            onClick={() => clickHandler(app.appointment_id)}
                             className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
                           >
                             <img src={patientIcon} />
                           </button>
                         )}
-                      </td> 
-                      <td className=" py-2 ">
+                      </td>
+                      <td className=" py-2 flex justify-center">
                         {!app.completed && (
                           <button
                             type="button"
-                            className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
+                            className="flex justify-center align-middle w-40 transition-transform transform hover:scale-125"
                           >
-                            <span>Null</span>                          </button>
+                            <img 
+                            src={nullIcon}
+                            className="w-7"  
+                            />
+                          </button>
                         )}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <AdmitAppointmentModal 
-              isOpen={isOpen} 
-              setIsOpen={setIsOpen} 
-              admissionId={admissionId}
-              getPatientsAppointment ={getPatientsAppointment }
-              foundAppointmentForModal={foundAppointmentForModal}
+              <AdmitAppointmentModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                admissionId={admissionId}
+                getPatientsAppointment={getPatientsAppointment}
+                foundAppointmentForModal={foundAppointmentForModal}
               />
             </div>
           </div>
