@@ -52,9 +52,12 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                     <th className="p-3">Id</th>
                     <th className="p-3">Date</th>
                     <th className="p-3">Doctor</th>
-                    <th className="p-3">Completed</th>
-                    <th className="p-3 flex align-middle justify-center">
+                    <th className=" p-3">Completed</th>
+                    <th className="w-2 text-center">
                       Admit Patient
+                    </th>
+                    <th className="w-2 text-center">
+                      NULL
                     </th>
                   </tr>
                 </thead>
@@ -77,7 +80,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                           <p className="text-lg text-gray-100">Pending</p>
                         )}
                       </td>
-                      <td className="px-3 py-2 flex justify-center align-middle">
+                      <td className=" py-2 ">
                         {!app.completed && (
                           <button
                             type="button"
@@ -86,6 +89,16 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                           >
                             <img src={patientIcon} />
                           </button>
+                        )}
+                      </td> 
+                      <td className=" py-2 ">
+                        {!app.completed && (
+                          <button
+                            type="button"
+                            onClick={() => admitPatient(app.appointment_id)}
+                            className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
+                          >
+                            <span>Null</span>                          </button>
                         )}
                       </td>
                     </tr>
