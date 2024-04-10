@@ -4,6 +4,7 @@ import { formatDate } from "../../../api/formatDate";
 import patientIcon from "../../../assets/icons8-patient-30.png";
 import nullIcon from "../../../assets/icons8-x-50.png";
 import AdmitAppointmentModal from "./modals/AdmitAppointmentModal";
+import NullAppointmentModal from "./modals/NullAppointmentModal";
 
 const AppoinmentsByPatient = ({ foundPatient }) => {
   //State variables
@@ -12,8 +13,11 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
   const [foundAppointments, setFoundAppointments] = useState({});
   console.log(foundAppointments);
 
-  //Modal handler for admission and appointments buttons
+  //Modal handler for admission  buttons
   const [isOpen, setIsOpen] = useState(false);
+ 
+  //Modal handler for  appointments buttons
+  const [isNullerOpen, setIsNullerOpen] = useState(false);
   
 
   const clickHandler = (id) => {
@@ -25,6 +29,15 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
     setFoundAppointmentForModal(foundAppointment);
   };
 
+
+  const nullHandler = (id) => {
+    setIsNullerOpen(true);
+    setAdmissionId(id);
+    const foundAppointment = foundAppointments?.data?.find(
+      (app) => app.appointment_id === id
+    );
+    setFoundAppointmentForModal(foundAppointment);
+  };
   //get patients updated grid
 
   const getPatientsAppointment = useCallback(async () => {
@@ -100,7 +113,8 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                           >
                             <img 
                             src={nullIcon}
-                            className="w-7"  
+                            className="w-7" 
+                            onClick={() => nullHandler(app.appointment_id)} 
                             />
                           </button>
                         )}
@@ -112,6 +126,13 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
               <AdmitAppointmentModal
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
+                admissionId={admissionId}
+                getPatientsAppointment={getPatientsAppointment}
+                foundAppointmentForModal={foundAppointmentForModal}
+              />
+              <NullAppointmentModal
+                isNullerOpen={isNullerOpen}
+                setIsNullerOpen={setIsNullerOpen}
                 admissionId={admissionId}
                 getPatientsAppointment={getPatientsAppointment}
                 foundAppointmentForModal={foundAppointmentForModal}
