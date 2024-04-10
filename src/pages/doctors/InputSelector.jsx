@@ -49,7 +49,7 @@ const InputSelector = ({onDoctorSelect}) => {
     if (selectedDoctor) {
       const { dni } = selectedDoctor;
       setDoctor(dni);
-      setQueryState({ query: "", uniqueNames: "" });
+      setQueryState({ query:name, uniqueNames: "" });
       onDoctorSelect(dni);
     }
   };
