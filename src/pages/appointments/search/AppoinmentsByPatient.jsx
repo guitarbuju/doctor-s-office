@@ -1,26 +1,37 @@
 import { useState, useEffect , useCallback} from "react";
-import { getDniData, postPersonDni } from "../../../api/fetchData";
+import { getDniData} from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
 import patientIcon from "../../../assets/icons8-patient-30.png";
+import AdmitAppointmentModal from "./modals/AdmitAppointmentModal";
 
 const AppoinmentsByPatient = ({ foundPatient }) => {
   const [foundAppointments, setFoundAppointments] = useState({});
-  
   console.log(foundAppointments);
+  //Modal handler for admission button
+  const[isOpen, setIsOpen] = useState(false);
+  const[admissionId,setAdmissionId]=useState('');
+ 
 
 
 
-  const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
+  // const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
 
-  const admitPatient = async (id) => {
-    try {
-      const postIdforAdmmission = await postPersonDni(urlPatch, id);
-      console.log(postIdforAdmmission);
-      getPatientsAppointment();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const admitPatient = async (id) => {
+  //   try {
+  //     const postIdforAdmmission = await postPersonDni(urlPatch, id);
+  //     console.log(postIdforAdmmission);
+  //     getPatientsAppointment();
+  //     setIsOpen(true)
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const clickHandler = (id)=>{
+    setIsOpen(true);
+    setAdmissionId(id)
+
+  }
 
   const getPatientsAppointment = useCallback(async () => {
     try {
@@ -84,7 +95,8 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                         {!app.completed && (
                           <button
                             type="button"
-                            onClick={() => admitPatient(app.appointment_id)}
+                            // onClick={() => admitPatient(app.appointment_id)}
+                            onClick={()=>clickHandler(app.appointment_id)}
                             className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
                           >
                             <img src={patientIcon} />
@@ -95,7 +107,6 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                         {!app.completed && (
                           <button
                             type="button"
-                            onClick={() => admitPatient(app.appointment_id)}
                             className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
                           >
                             <span>Null</span>                          </button>
@@ -105,6 +116,12 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                   ))}
                 </tbody>
               </table>
+              <AdmitAppointmentModal 
+              isOpen={isOpen} 
+              setIsOpen={setIsOpen} 
+              admissionId={admissionId}
+              getPatientsAppointment ={getPatientsAppointment }
+              />
             </div>
           </div>
         </div>
