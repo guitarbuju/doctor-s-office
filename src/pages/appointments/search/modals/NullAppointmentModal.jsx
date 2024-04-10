@@ -2,6 +2,7 @@ import { Dialog } from "@headlessui/react";
 import { patchData } from "../../../../api/fetchData.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../../../api/formatDate.js";
 
 function NullAppointmentModal({
   isNullerOpen,
@@ -50,7 +51,7 @@ function NullAppointmentModal({
         <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all h-52">
           <Dialog.Title className='mt-8'>
              Appoinment for {foundAppointmentForModal.patient_full_name}{" "}
-            with Dr.{foundAppointmentForModal.doctor_full_name} on date {foundAppointmentForModal.appointment_date}
+            with Dr.{foundAppointmentForModal.doctor_full_name} on date {formatDate(foundAppointmentForModal.appointment_date)}
           </Dialog.Title>
         { !isResponseVisible ?
           <Dialog.Description

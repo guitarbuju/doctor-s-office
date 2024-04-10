@@ -2,6 +2,7 @@ import { Dialog } from "@headlessui/react";
 import { postPersonDni } from "../../../../api/fetchData.js";
 import { useState } from "react";
 
+
 function AdmitAppointmentModal({
   isOpen,
   setIsOpen,
