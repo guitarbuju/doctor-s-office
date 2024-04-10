@@ -9,6 +9,7 @@ const AppoinmentList = () => {
   const { register, handleSubmit, reset } = useForm();
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/appointments/list`;
+  const today = new Date().toISOString().split("T")[0];
   const [appointmentList, setAppointmentList] = useState();
   const [dataForm, setDataForm] = useState({ error: null, dates: null });
 
@@ -65,12 +66,14 @@ const AppoinmentList = () => {
               <label className="text-gray-100">From</label>
               <input
                 type="date"
+                defaultValue={today}
                 className="w-3/5 p-3 rounded-l-lg sm:w-2/3"
                 {...register("fromDate", { required: true })}
               />
               <label className="text-gray-100">To</label>
               <input
                 type="date"
+                defaultValue={today}
                 className="w-3/5 p-3 rounded-l-lg sm:w-2/3"
                 {...register("toDate", { required: true })}
               />
