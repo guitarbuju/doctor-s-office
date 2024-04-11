@@ -18,7 +18,7 @@ const ListTable = ({ appointmentList, reloadAppointmentList }) => {
   };
 
   return (
-    <div className="bg-red-400 ">
+    <div className="">
       <div className="container p-2 mx-auto sm:p-4 text-gray-900">
         <h2 className="mb-4 text-2xl font-semibold leading-tight text-gray-900">
           Appointments
@@ -26,13 +26,13 @@ const ListTable = ({ appointmentList, reloadAppointmentList }) => {
         <div className="overflow-x-auto">
           <table className="w-full p-6 text-xs text-left whitespace-nowrap">
             <thead>
-              <tr className=" text-lg ">
-                <th className="p-3">Id</th>
-                <th className="p-3">Date</th>
-                <th className="p-3">Patient</th>
-                <th className="p-3">Doctor</th>
-                <th className="p-3">Completed</th>
-                <th className="p-3 flex align-middle justify-center">
+              <tr className=" text-lg bg-zinc-200">
+                <th className="p-3 border-x border-y">Id</th>
+                <th className="p-3  border-x border-y">Date</th>
+                <th className="p-3  border-x border-y">Patient</th>
+                <th className="p-3  border-x border-y">Doctor</th>
+                <th className="p-3  border-x border-y">Completed</th>
+                <th className="p-3  border-x border-y flex align-middle justify-center">
                   Admit Patient
                 </th>
               </tr>
@@ -40,26 +40,26 @@ const ListTable = ({ appointmentList, reloadAppointmentList }) => {
             <tbody className="border-b border-gray-300">
               {appointmentList?.data?.map((app, index) => (
                 <tr className="text-sm" key={index}>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     <p>{app.appointment_id}</p>
                   </td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-2 border-x border-y ">
                     <span>{formatDate(app.appointment_date)}</span>
                   </td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     <p>{app.patient_full_name}</p>
                   </td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-2 border-x border-y ">
                     <p>{app.doctor_full_name}</p>
                   </td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     {app.completed ? (
-                      <p className="font-bold">Completed</p>
+                      <p className=" line-through text-zinc-700">Completed</p>
                     ) : (
-                      <p className="text-lg text-gray-100">Pending</p>
+                      <p className="font-bold">Pending</p>
                     )}
                   </td>
-                  <td className="px-3 py-2 flex justify-center align-middle">
+                  <td className="px-3 py-2 flex justify-center align-middle border-x border-y ">
                     {!app.completed && (
                       <button
                         type="button"

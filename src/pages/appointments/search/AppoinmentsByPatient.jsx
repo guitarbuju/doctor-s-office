@@ -89,7 +89,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                       </td>
                       <td className="px-3 py-2 border-x border-y">
                         {app.completed ? (
-                          <p className="line-through">Completed</p>
+                          <p className="line-through text-zinc-700">Completed</p>
                         ) : (
                           <p className="font-bold ">Pending</p>
                         )}
