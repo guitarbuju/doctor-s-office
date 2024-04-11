@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    background-color: #FAFAFA;
+    min-height: 100vh;
+}

@@ -58,7 +58,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
   return (
     <>
       <div>
-        <div className="bg-orange-300 ">
+        <div className="bg-zinc-50 ">
           <div className="container p-2 mx-auto sm:p-4 text-gray-900">
             <h2 className="mb-4 text-xl flex flex-start font-semibold leading-tight text-gray-900">
               Appointments
@@ -66,50 +66,51 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
             <div className="overflow-x-auto">
               <table className="w-full p-6 text-xs text-left whitespace-nowrap">
                 <thead>
-                  <tr className=" text-sm ">
-                    <th className="p-3 w-4">Id</th>
+                  <tr className=" text-sm bg-zinc-200 ">
+                    <th className="p-3 w-4  ">Id</th>
                     <th className="p-3 w-6">Date</th>
                     <th className="p-3 w-10">Doctor</th>
-                    <th className=" p-3 w-10">Completed</th>
+                    <th className=" p-3 w-10">Status</th>
                     <th className="w-10 text-center">Admit Patient</th>
-                    <th className="w-2 text-center">NULL</th>
+                    <th className="w-2 text-center">Anull Appointment</th>
                   </tr>
                 </thead>
-                <tbody className="border-b border-gray-300">
+                <tbody className="border-b border-gray-300 ">
                   {foundAppointments?.data?.map((app, index) => (
-                    <tr className="text-sm" key={index}>
-                      <td className="px-3 py-2">
+                    <tr className="text-sm rounded-2xl" key={index}>
+                      <td className="px-3 py-2 border-x border-y bg-zinc-100 rounded-sm">
                         <p>{app.appointment_id}</p>
                       </td>
-                      <td className="px-3 py-2">
+                      <td className="px-3 py-2 border-x border-y ">
                         <span>{formatDate(app.appointment_date)}</span>
                       </td>
-                      <td className="px-3 py-2">
+                      <td className="px-3 py-2 border-x border-y bg-zinc-100 rounded-sm">
                         <p>{app.doctor_full_name}</p>
                       </td>
-                      <td className="px-3 py-2">
+                      <td className="px-3 py-2 border-x border-y">
                         {app.completed ? (
-                          <p className="font-bold">Completed</p>
+                          <p className="line-through">Completed</p>
                         ) : (
-                          <p className="text-lg text-gray-100">Pending</p>
+                          <p className="font-bold ">Pending</p>
                         )}
                       </td>
-                      <td className=" py-2  ">
+                      <td  className="px-3 py-2 border-x border-y bg-zinc-100 rounded-sm">
                         {!app.completed && (
                           <button
+                          className="flex justify-center align-middle w-40 transition-transform transform hover:scale-125 pl-20"
                             type="button"
                             onClick={() => clickHandler(app.appointment_id)}
-                            className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
+                            
                           >
                             <img src={patientIcon} />
                           </button>
                         )}
                       </td>
-                      <td className=" py-2 flex justify-center">
+                      <td className=" py-2 flex justify-center border-x border-y">
                         {!app.completed && (
                           <button
                             type="button"
-                            className="flex justify-center align-middle w-40 transition-transform transform hover:scale-125"
+                            className="flex justify-center align-middle w-40 transition-transform transform hover:scale-125 "
                           >
                             <img 
                             src={nullIcon}

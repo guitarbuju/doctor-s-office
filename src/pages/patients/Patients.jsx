@@ -58,10 +58,10 @@ return (
           </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="container flex flex-col mx-auto space-y-12 font-roboto"
+          className="container flex flex-col mx-auto space-y-12 font-roboto bg-medBlue"
         >
           <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-medBlue">
-            <div className="space-y-2 col-span-full lg:col-span-1">
+            <div className="space-y-2 col-span-full lg:col-span-1 bg-medBlue">
               <p className="font-medium text-gray-200 text-lg">Personal Information</p>
               {!patientCreated && <p className="text-xs text-gray-200">
                 Please enter patient`s information as requested.
