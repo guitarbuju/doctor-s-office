@@ -1,6 +1,6 @@
 import { patchData } from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
-import patientIcon from "../../../assets/icons8-patient-30.png";
+import play from "../../../assets/icons8-play-50.png";
 
 const ListTable = ({ appointmentList, reloadAppointmentList }) => {
   console.log("este", appointmentList);
@@ -66,7 +66,7 @@ const ListTable = ({ appointmentList, reloadAppointmentList }) => {
                         onClick={() => admitPatient(app.appointment_id)}
                         className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
                       >
-                        <img src={patientIcon} />
+                        <img src={play} className="w-6" />
                       </button>
                     )}
                   </td>

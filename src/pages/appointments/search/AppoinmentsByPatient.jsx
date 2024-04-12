@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { getDniData } from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
-import patientIcon from "../../../assets/icons8-patient-30.png";
+import play from "../../../assets/icons8-play-50.png";
 import nullIcon from "../../../assets/icons8-x-50.png";
 import AdmitAppointmentModal from "./modals/AdmitAppointmentModal";
 import NullAppointmentModal from "./modals/NullAppointmentModal";
@@ -102,7 +102,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                             onClick={() => clickHandler(app.appointment_id)}
                             
                           >
-                            <img src={patientIcon} />
+                            <img src={play} className="w-6"/>
                           </button>
                         )}
                       </td>
@@ -114,7 +114,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                           >
                             <img 
                             src={nullIcon}
-                            className="w-7" 
+                            className="w-6" 
                             onClick={() => nullHandler(app.appointment_id)} 
                             />
                           </button>
