@@ -97,7 +97,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                       <td  className="px-3 py-2 border-x border-y bg-zinc-100 rounded-sm">
                         {!app.completed && (
                           <button
-                          className="flex justify-center align-middle w-40 transition-transform transform hover:scale-125 pl-20"
+                          className="flex justify-center align-middle w-40 transition-transform transform hover:scale-125 pl-28"
                             type="button"
                             onClick={() => clickHandler(app.appointment_id)}
                             
