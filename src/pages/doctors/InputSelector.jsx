@@ -47,13 +47,13 @@ const InputSelector = ({onDoctorSelect}) => {
       (person) => person.full_name.toLowerCase() === name.toLowerCase()
     );
     if (selectedDoctor) {
-      const { dni } = selectedDoctor;
-      setDoctor(dni);
+      const { doctor_dni } = selectedDoctor;
+      setDoctor(doctor_dni);
       setQueryState({ query:name, uniqueNames: "" });
-      onDoctorSelect(dni);
+      onDoctorSelect(doctor_dni);
     }
   };
-  console.log(doctor);
+  console.log('this is te dr',doctor);
 
   return (
    <div >

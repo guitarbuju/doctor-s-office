@@ -66,14 +66,14 @@ const AppoinmentList = () => {
               <label className="text-gray-100">From</label>
               <input
                 type="date"
-                defaultValue={today}
+                // defaultValue={today}
                 className="w-3/5 p-3 rounded-l-lg sm:w-2/3"
                 {...register("fromDate", { required: true })}
               />
               <label className="text-gray-100">To</label>
               <input
                 type="date"
-                defaultValue={today}
+                // defaultValue={today}
                 className="w-3/5 p-3 rounded-l-lg sm:w-2/3"
                 {...register("toDate", { required: true })}
               />
