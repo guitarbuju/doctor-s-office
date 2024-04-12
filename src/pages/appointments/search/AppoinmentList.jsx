@@ -9,7 +9,6 @@ const AppoinmentList = () => {
   const { register, handleSubmit, reset } = useForm();
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/appointments/list`;
-  const today = new Date().toISOString().split("T")[0];
   const [appointmentList, setAppointmentList] = useState();
   const [dataForm, setDataForm] = useState({ error: null, dates: null });
 
