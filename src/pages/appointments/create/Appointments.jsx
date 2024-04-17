@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import InputSelector from "../../doctors/InputSelector";
+import InputSelector from "../../partnershipHub/doctors/Doctors";
 import { postPersonData } from "../../../api/fetchData";
 import { usePatientsInfoStore } from "../../../../store";
 import { Link } from "react-router-dom";

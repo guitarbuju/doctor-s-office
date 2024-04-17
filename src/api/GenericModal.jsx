@@ -1,8 +1,10 @@
 
 import { Dialog } from '@headlessui/react'
 
-function GenericModal({isOpen, setIsOpen, recordedDoctorInfo}) {
-  console.log(recordedDoctorInfo)
+function GenericModal({isOpen, setIsOpen, recordedInfo}) {
+  console.log(recordedInfo)
+
+  const who = recordedInfo.partner_type === 'isDoctor' ? 'Doctor' : 'Collaborator';
 
   return (
     <Dialog
@@ -15,13 +17,13 @@ function GenericModal({isOpen, setIsOpen, recordedDoctorInfo}) {
         <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all h-52">
           <Dialog.Title className='mt-8'>
              
-            Doctor created successfully... ID:{recordedDoctorInfo?.id}
+            <span>{who}</span> created successfully... ID:{recordedInfo?.id}
           </Dialog.Title>
         
           
             <Dialog.Description>
             <span className="text-lg font-medium leading-6 text-gray-900">
-              Welcome Doctor {recordedDoctorInfo?.title}
+              Welcome <span>{who}</span> {recordedInfo?.title}
             </span> <br />
             <button
               className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-2"
