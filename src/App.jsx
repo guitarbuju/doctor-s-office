@@ -8,6 +8,7 @@ import PatientSearchByDni from "./pages/patients/PatientSearchByDni";
 import AppoinmentList from "./pages/appointments/search/AppoinmentList.jsx";
 import AppointmentsWrapper from "./pages/appointments/create/AppointmentsWrapper.jsx";
 import Collaborators from "./pages/partnershipHub/collaborators/CollaboratorsForm.jsx";
+import PartnerSearch from "./pages/partnershipHub/PartnerSearch.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route index={true} element={<Welcome />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/collaborators" element={<Collaborators/>} />
+        <Route path="/collaborators/search" element={<PartnerSearch/>} />
         <Route path="/patients" element={<Patients />} />
         <Route path="/patients/dni" element={<PatientSearchByDni />} />
         <Route path="/appointments" element={<AppointmentsWrapper/>} />
