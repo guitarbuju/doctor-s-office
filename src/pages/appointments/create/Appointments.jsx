@@ -75,7 +75,7 @@ const Appointments = () => {
               className="inline-flex items-center px-5 py-3 rounded-lg"
               onChange={(e) => setAppointmentdate(e.target.value)}
             />
-            <InputSelector onDoctorSelect={handleDoctorSelection} />
+            {/* <InputSelector onDoctorSelect={handleDoctorSelection} /> */}
           </div>
           :''}
           <div className="flex flex-col gap-2 ">

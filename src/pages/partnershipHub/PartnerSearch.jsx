@@ -49,7 +49,7 @@ const PartnerSearch = () => {
           <select
             name="HeadlineAct"
             id="HeadlineAct"
-            className="mt-1.5 w-[200px] rounded-lg border-gray-300 text-gray-700 sm:text-sm py-1"
+            className=" w-[200px] rounded-lg border-gray-300 text-gray-700 sm:text-sm py-1"
             onChange={(e)=>setFilterItem(e.target.value)}
           >
             <option value="">Please select</option>

@@ -9,6 +9,7 @@ import AppoinmentList from "./pages/appointments/search/AppoinmentList.jsx";
 import AppointmentsWrapper from "./pages/appointments/create/AppointmentsWrapper.jsx";
 import Collaborators from "./pages/partnershipHub/collaborators/CollaboratorsForm.jsx";
 import PartnerSearch from "./pages/partnershipHub/PartnerSearch.jsx";
+import SwitchBoard from "./pages/administration/SwitchBoard.jsx";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/patients/dni" element={<PatientSearchByDni />} />
         <Route path="/appointments" element={<AppointmentsWrapper/>} />
         <Route path="/appointments/list" element={<AppoinmentList />} />
+        <Route path="/administration" element={<SwitchBoard/>} />
       </Routes>
       
     </>

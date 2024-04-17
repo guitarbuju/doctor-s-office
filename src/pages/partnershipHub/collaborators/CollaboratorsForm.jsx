@@ -6,7 +6,7 @@ import { useState } from "react";
 const Collaborators = () => {
   const { register, handleSubmit, reset } = useForm();
   const url = `${import.meta.env.VITE_BASE_URL}/collaborators`;
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
   const [recordedInfo, setRecordedInfo] = useState({});
   //Post data to API
   const onSubmit = async (data) => {
