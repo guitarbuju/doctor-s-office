@@ -19,7 +19,7 @@ const SwitchBoard = () => {
 			</div>
 		</div>
 		<div className=" items-center justify-center p-6  lg:mt-10 h-72  sm:h-80 lg:h-96 xl:h-112 2xl:h-128 ml-2 ">
-			<img src="https://img.freepik.com/free-photo/asian-healthcare-female-posing_1258-36738.jpg" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 pl-6" />
+			<img src="https://hips.hearstapps.com/hmg-prod/images/types-of-doctors-1600114658.jpg?crop=1xw:0.8425829875518672xh;center,top&resize=1200:*" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 pl-6" />
 		</div>
 	</div>
 </section>
