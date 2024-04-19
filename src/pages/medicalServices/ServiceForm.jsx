@@ -1,18 +1,26 @@
 import { useForm } from "react-hook-form";
 import { postPersonData } from "../../api/fetchData";
+import { useState } from "react";
+import ServiceModal from "./ServiceModal";
 
 const ServiceForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const url = `${import.meta.env.VITE_BASE_URL}/services`;
+   const [isOpen, setIsOpen]=useState(false);
+    const [message, setMessage]=useState('')
+
 
   const onSubmit = async (data) => {
 
     try {
       const postServiceToApi = await postPersonData(url, data);
       console.log(postServiceToApi);
+      setIsOpen(true)
+      setMessage(postServiceToApi)
       reset();
     } catch (error) {
       console.error(error);
+      setMessage(error)
     }
   };
 
@@ -100,6 +108,7 @@ const ServiceForm = () => {
           className="object-cover w-full h-[520px] rounded-md xl:col-span-3 mt-8"
         />
       </div>
+      <ServiceModal isOpen={isOpen} setIsOpen={setIsOpen} message={message}/>
     </section>
   );
 };
