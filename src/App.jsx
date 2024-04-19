@@ -10,6 +10,7 @@ import AppointmentsWrapper from "./pages/appointments/create/AppointmentsWrapper
 import Collaborators from "./pages/partnershipHub/collaborators/CollaboratorsForm.jsx";
 import PartnerSearch from "./pages/partnershipHub/PartnerSearch.jsx";
 import SwitchBoard from "./pages/administration/SwitchBoard.jsx";
+import ServiceForm from "./pages/medicalServices/ServiceForm.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/appointments" element={<AppointmentsWrapper/>} />
         <Route path="/appointments/list" element={<AppoinmentList />} />
         <Route path="/administration" element={<SwitchBoard/>} />
+        <Route path="/services" element={<ServiceForm />}/>
       </Routes>
       
     </>
