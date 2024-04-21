@@ -11,6 +11,7 @@ import Collaborators from "./pages/partnershipHub/collaborators/CollaboratorsFor
 import PartnerSearch from "./pages/partnershipHub/PartnerSearch.jsx";
 import SwitchBoard from "./pages/administration/SwitchBoard.jsx";
 import ServiceForm from "./pages/medicalServices/ServiceForm.jsx";
+import NotFound from "./api/NotFound.jsx";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/appointments/list" element={<AppoinmentList />} />
         <Route path="/administration" element={<SwitchBoard/>} />
         <Route path="/services" element={<ServiceForm />}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
       
     </>
