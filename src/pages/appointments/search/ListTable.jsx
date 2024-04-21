@@ -1,21 +1,24 @@
-import { patchData } from "../../../api/fetchData";
+import { postPersonDni } from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
 import play from "../../../assets/icons8-play-50.png";
 
 const ListTable = ({ appointmentList, reloadAppointmentList }) => {
   console.log("este", appointmentList);
 
-  const urlPatch = `${import.meta.env.VITE_BASE_URL}/appointments/complete`;
 
-  const admitPatient = async (id) => {
-    try {
-      const patchAppointmentId = patchData(urlPatch, id);
-      console.log(patchAppointmentId);
-      reloadAppointmentList();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+ const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
+
+ 
+   const admitPatient = async (id) => {
+     try {
+       const postIdforAdmmission = await postPersonDni(urlPatch, id);
+       console.log(postIdforAdmmission);
+       reloadAppointmentList();
+     } catch (error) {
+       console.error(error);
+     }
+   };
+ 
 
   return (
     <div className="">
