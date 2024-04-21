@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { postPersonDni } from "../../../api/fetchData";
 import { formatDate } from "../../../api/formatDate";
 import play from "../../../assets/icons8-play-50.png";
+import SpinnerModal from "../../../api/SpinnerModal";
 
 const ListTable = ({ appointmentList, reloadAppointmentList }) => {
   console.log("este", appointmentList);
-
+const [isOpen, setIsOpen]=useState(false)
 
  const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
 
@@ -14,6 +16,7 @@ const ListTable = ({ appointmentList, reloadAppointmentList }) => {
        const postIdforAdmmission = await postPersonDni(urlPatch, id);
        console.log(postIdforAdmmission);
        reloadAppointmentList();
+       setIsOpen(true);
      } catch (error) {
        console.error(error);
      }
@@ -78,6 +81,8 @@ const ListTable = ({ appointmentList, reloadAppointmentList }) => {
             </tbody>
           </table>
         </div>
+        <SpinnerModal isOpen={isOpen} setIsOpen={setIsOpen}/>
+
       </div>
     </div>
   );
