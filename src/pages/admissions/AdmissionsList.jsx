@@ -2,6 +2,7 @@ import AdmissionsTable from "./AdmissionsTable"
 
 
 const AdmissionsList = () => {
+    
 
     
   return (

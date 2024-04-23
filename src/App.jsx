@@ -13,6 +13,7 @@ import SwitchBoard from "./pages/administration/SwitchBoard.jsx";
 import ServiceForm from "./pages/medicalServices/ServiceForm.jsx";
 import NotFound from "./api/NotFound.jsx";
 import AdmissionsList from "./pages/admissions/AdmissionsList.jsx";
+import AdmissionCharger from "./pages/admissions/AdmissionCharger.jsx";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/appointments" element={<AppointmentsWrapper/>} />
         <Route path="/appointments/list" element={<AppoinmentList />} />
         <Route path="/admissions" element={<AdmissionsList/>} />
+        <Route path="/charges" element={<AdmissionCharger/>} />
         <Route path="/administration" element={<SwitchBoard/>} />
         <Route path="/services" element={<ServiceForm />}/>
         <Route path="*" element={<NotFound/>}/>

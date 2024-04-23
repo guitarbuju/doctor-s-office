@@ -1,16 +1,17 @@
-
 import { formatDate } from "../../api/formatDate";
 import { fetchAllPeopleData } from "../../api/fetchData";
 import { useEffect, useState } from "react";
-
+import play from "../../assets/icons8-play-50.png";
+import { useAppointmentsInfoStore } from "../../../store";
+import { useNavigate } from "react-router-dom";
 
 const AdmissionsTable = () => {
+  const [admittedList, setAdmittedList] = useState([]);
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const url = `${BASE_URL}/admissions/pending`;
+  const navigate=useNavigate()
 
-const[admittedList, setAdmittedList]=useState([]);    
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const url = `${BASE_URL}/admissions/pending`;
-
-useEffect(() => {
+  useEffect(() => {
     const getAdmittedPatients = async () => {
       try {
         const fetchAdmittedList = await fetchAllPeopleData(url);
@@ -23,11 +24,21 @@ useEffect(() => {
     getAdmittedPatients();
   }, []);
 
-console.log(admittedList)
+  const admissionsInfo = useAppointmentsInfoStore(
+    (state) => state.appointmentInfo
+  );
+  const setAdmissionInfo = useAppointmentsInfoStore(
+    (state) => state.setAppointmentInfo
+  );
 
+  console.log(admittedList);
+  console.log(admissionsInfo);
+  
+  
   return (
-    <div>
-         <div className="container p-2 mx-auto sm:p-4 text-gray-900">
+    <div >
+   
+      <div className="container p-2 mx-auto sm:p-4 text-gray-900">
         <h2 className="mb-4 text-2xl font-semibold leading-tight">
           Pending Admissions
         </h2>
@@ -40,7 +51,7 @@ console.log(admittedList)
                 <th className="p-3  border-x border-y">Appointment Date</th>
                 <th className="p-3  border-x border-y">Patient</th>
                 <th className="p-3  border-x border-y">Doctor</th>
-                <th className="p-3  border-x border-y">More</th>
+                <th className="p-3  border-x border-y">Add Charges</th>
               </tr>
             </thead>
             <tbody className="border-b border-gray-300">
@@ -61,27 +72,31 @@ console.log(admittedList)
                   <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     <p>{adm.doctor_full_name}</p>
                   </td>
-                  {/* <td className="px-3 py-2 flex justify-center align-middle border-x border-y ">
-                    {!adm.completed && (
-                      <button
-                        type="button"
-                        onClick={() => getAdmittedPatients(adm.appointment_id)}
-                        className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
-                      >
-                        <img src={play} className="w-6" />
-                      </button>
-                    )}
-                  </td> */}
+                  <td className="px-3 py-2 flex justify-center align-middle border-x border-y ">
+                    <button
+                      type="button"
+                      onClick={() =>{
+                        setAdmissionInfo({
+                          id: adm.id,
+                          date: adm.date_created,
+                          doctor: adm.doctor_full_name,
+                          patient: adm.patient_full_name,
+                        }); 
+                        navigate('/charges')
+                      }}
+                      className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
+                    >
+                      <img src={play} className="w-6" />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-       
-
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdmissionsTable
+export default AdmissionsTable;
