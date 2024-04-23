@@ -1,5 +1,5 @@
 import { useForm, useFieldArray } from "react-hook-form";
-import { fetchAllPeopleData } from "../../api/fetchData";
+import { fetchAllPeopleData, postPersonData } from "../../api/fetchData";
 import { useState, useEffect } from "react";
 
 const AdmissionDinamicForm = ({ admissionsInfo }) => {
@@ -7,6 +7,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
   const [inputRequestedData, setInputRequestedData] = useState({});
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const serviceUrl = `${BASE_URL}/services`;
+  const chargesUrl = `${BASE_URL}/charges`;
   const collaboratorsUrl = `${BASE_URL}/collaborators`;
   const {
     register,
@@ -36,13 +37,21 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
 
   console.log(inputRequestedData);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     const { id } = admissionsInfo;
-    const payLoad=data.dynamicInputs.forEach((input) => {
-      input.id = id;
-    });
-    console.log(payLoad);
+    const payLoad = data.dynamicInputs.map((input) => {
+        input.id = id;
+        return input; // Return the modified input object
+      });
+    
+    try{
+        const postPayload = await postPersonData(chargesUrl,payLoad)
+       console.log('payload',postPayload)
+
+    }catch(error){
+        console.error(error)
+    }
     reset();
     setViewForm(false);
   };
@@ -99,7 +108,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
               <label>Quantity</label>
               <input
                 className="border rounded-md py-1 w-12 "
-                {...register(`dynamicInputs[${index}].quantity`, {
+                {...register(`dynamicInputs[${index}].num`, {
                   required: true,
                 })}
                 type="number"
@@ -108,7 +117,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
             <button
               className="h-6 ml-2 mt-4 bg-medBlue hover:bg-purple-400 text-gray-100 px-2  rounded transition duration-150 text-xs"
               type="button"
-              onClick={() => append({ serviceId: "", quantity: "" })}
+              onClick={() => append({ serviceId: "", num: "" })}
             >
               Add Input
             </button>{" "}
@@ -126,7 +135,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
         <button
           className="h-6 ml-2 mt-5 bg-medBlue hover:bg-purple-400 text-gray-100 px-2  rounded transition duration-150 text-xs"
           type="button"
-          onClick={() => append({ serviceId: "", quantity: "" })}
+          onClick={() => append({ serviceId: "", num: "" })}
         >
           Add Input
         </button>
