@@ -39,10 +39,10 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
   const onSubmit = (data) => {
     console.log(data);
     const { id } = admissionsInfo;
-    data.dynamicInputs.forEach((input) => {
+    const payLoad=data.dynamicInputs.forEach((input) => {
       input.id = id;
     });
-    console.log(data);
+    console.log(payLoad);
     reset();
     setViewForm(false);
   };
