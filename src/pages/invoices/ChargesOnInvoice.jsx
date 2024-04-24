@@ -4,17 +4,14 @@ import play from "../../assets/icons8-play-50.png";
 // import { useAppointmentsInfoStore } from "../../../store";
 // import { useNavigate } from "react-router-dom";
 
-const ChargesOnInvoice = ({ admissionsInfo }) => {
+const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
   const [chargeList, setChargeList] = useState([]);
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/charges`;
-//   const admissionsInfo = useAppointmentsInfoStore(
-//     (state) => state.appointmentInfo
-//   );
 
   useEffect(() => {
     getCharges();
-  }, []);
+  }, [reload]);
 
   const getCharges = async () => {
     try {
@@ -25,7 +22,7 @@ const ChargesOnInvoice = ({ admissionsInfo }) => {
     }
   };
 
-  console.log(chargeList);
+  
 
   const deleteChargeHandler = async (id) => {
     const deleteChargeById = await deleteById(url, id);
@@ -36,10 +33,11 @@ const ChargesOnInvoice = ({ admissionsInfo }) => {
   return (
     <div>
       <div className="container p-2 mx-auto sm:p-4 text-gray-900">
+   
         <h2 className="mb-4 text-2xl font-semibold leading-tight ">
-          Outstanding Charges
+         {chargeList ? " Outstanding Charges": "The List is Temporarily Empty"}
         </h2>
-
+         <h2>Charges for patient {admissionsInfo.patient} Admissions ID:{admissionsInfo.id}</h2>
         <div className="overflow-x-auto">
           <table className="w-full p-6 text-xs text-left whitespace-nowrap">
             <thead>
@@ -89,6 +87,7 @@ const ChargesOnInvoice = ({ admissionsInfo }) => {
           </table>
         </div>
       </div>
+    
       {chargeList?.total && chargeList.total.length > 0 && (
         <span className="text-md mt-2 flex justify-end">
           Total Charges: {chargeList.total[0].total_sum}
