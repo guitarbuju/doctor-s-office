@@ -73,7 +73,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
                 {...register(`dynamicInputs[${index}].serviceId`, {
                   required: true,
                 })}
-                defaultValue={field.serviceId} // For editing existing data
+                defaultValue={field.serviceId} 
               >
                 {inputRequestedData?.services?.data?.map((service) => (
                   <option key={service.id} value={service.id}>

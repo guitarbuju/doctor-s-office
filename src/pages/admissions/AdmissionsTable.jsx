@@ -82,7 +82,8 @@ const AdmissionsTable = () => {
                           doctor: adm.doctor_full_name,
                           patient: adm.patient_full_name,
                         }); 
-                        navigate('/charges')
+                        // navigate('/charges')
+                         navigate('/charges/add')
                       }}
                       className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
                     >
