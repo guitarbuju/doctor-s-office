@@ -10,7 +10,6 @@ const PartnerSearch = () => {
 
   const listFiller = async () => {
    
-
     try {
       const getPartners = await fetchAllPeopleData(url);
       
@@ -19,8 +18,6 @@ const PartnerSearch = () => {
       console.error(error);
     }
   };
-
-
 
   useEffect(() => {
     listFiller();
