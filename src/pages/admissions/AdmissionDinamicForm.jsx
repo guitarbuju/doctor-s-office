@@ -1,6 +1,9 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { fetchAllPeopleData, postPersonData } from "../../api/fetchData";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 
 const AdmissionDinamicForm = ({ admissionsInfo }) => {
   const [viewForm, setViewForm] = useState(true);
@@ -9,6 +12,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
   const serviceUrl = `${BASE_URL}/services`;
   const chargesUrl = `${BASE_URL}/charges`;
   const collaboratorsUrl = `${BASE_URL}/collaborators`;
+  const navigate = useNavigate()
   const {
     register,
     control,
@@ -42,7 +46,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
     const { id } = admissionsInfo;
     const payLoad = data.dynamicInputs.map((input) => {
         input.id = id;
-        return input; // Return the modified input object
+        return input;
       });
     
     try{
@@ -54,6 +58,7 @@ const AdmissionDinamicForm = ({ admissionsInfo }) => {
     }
     reset();
     setViewForm(false);
+    navigate('/invoices')
   };
 
   return (
