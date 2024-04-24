@@ -57,6 +57,18 @@ console.error(error);
   }
 
 }
+export const deleteById = async(url,data)=>{
+  const deleteURL=`${url}/${data}`;
+  console.log(deleteURL,data)
+  try{
+    const response = await axios.delete(deleteURL);
+    return response.data;
+
+  }catch(error){
+console.error(error);
+  }
+
+}
 
 
 export const getDniData = async(url,data)=>{

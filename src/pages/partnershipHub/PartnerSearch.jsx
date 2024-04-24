@@ -5,24 +5,28 @@ import play from "../../assets/icons8-play-50.png";
 const PartnerSearch = () => {
   const [foundPartners, setFoundPartners] = useState([])
   const [filterItem, setFilterItem]= useState('')
-  
+   const url = `${import.meta.env.VITE_BASE_URL}/collaborators`;
   
 
   const listFiller = async () => {
-    const url = `${import.meta.env.VITE_BASE_URL}/collaborators`;
+   
 
     try {
       const getPartners = await fetchAllPeopleData(url);
+      
       setFoundPartners(getPartners);
     } catch (error) {
       console.error(error);
     }
   };
+
+
+
   useEffect(() => {
     listFiller();
   }, []);
 
-
+console.log(foundPartners)
 
    const filteredPartners= foundPartners?.data?.filter((partner)=>partner.partner_type === filterItem);
    console.log(filteredPartners)
@@ -85,7 +89,7 @@ const PartnerSearch = () => {
                   <p>{app.partner_type}</p>
                 </td>
                 <td className="px-3 py-2 border-x border-y bg-zinc-100 rounded-sm">
-                  <p>{app.contact_phone}</p>
+                  <p>{app.phone}</p>
                 </td>
                 <td className="px-3 py-2 border-x border-y bg-zinc-100 rounded-sm">
                   <p>{app.email}</p>

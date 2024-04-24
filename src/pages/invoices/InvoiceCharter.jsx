@@ -23,7 +23,7 @@ const InvoiceCharter = () => {
           </div>
           </div>
       </section>
-     <ChargesOnInvoice/>
+     <ChargesOnInvoice admissionsInfo={ admissionsInfo }/>
       </div>
   )
 }

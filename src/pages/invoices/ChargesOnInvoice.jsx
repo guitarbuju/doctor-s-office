@@ -1,36 +1,37 @@
-import { getDniData } from "../../api/fetchData";
+import { deleteById, getDniData } from "../../api/fetchData";
 import { useEffect, useState } from "react";
-// import play from "../../assets/icons8-play-50.png";
-import { useAppointmentsInfoStore } from "../../../store";
+import play from "../../assets/icons8-play-50.png";
+// import { useAppointmentsInfoStore } from "../../../store";
 // import { useNavigate } from "react-router-dom";
 
-const ChargesOnInvoice = () => {
+const ChargesOnInvoice = ({ admissionsInfo }) => {
   const [chargeList, setChargeList] = useState([]);
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/charges`;
-  const admissionsInfo = useAppointmentsInfoStore(
-    (state) => state.appointmentInfo
-  );
-  //   const setAdmissionsInfo = useAppointmentsInfoStore(
-  //     (state) => state.setAppointmentInfo
-  //   );
-  //   const navigate=useNavigate()
+//   const admissionsInfo = useAppointmentsInfoStore(
+//     (state) => state.appointmentInfo
+//   );
 
   useEffect(() => {
-    const getCharges = async () => {
-      try {
-        const chargeList = await getDniData(url, admissionsInfo.id);
-        setChargeList(chargeList);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     getCharges();
   }, []);
 
+  const getCharges = async () => {
+    try {
+      const chargeList = await getDniData(url, admissionsInfo.id);
+      setChargeList(chargeList);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   console.log(chargeList);
-  console.log(admissionsInfo);
+
+  const deleteChargeHandler = async (id) => {
+    const deleteChargeById = await deleteById(url, id);
+    getCharges();
+    console.log(deleteChargeById);
+  };
 
   return (
     <div>
@@ -49,6 +50,7 @@ const ChargesOnInvoice = () => {
                 <th className="p-3  border-x border-y">Quantity</th>
                 <th className="p-3  border-x border-y">Price</th>
                 <th className="p-3  border-x border-y">Total</th>
+                <th className="p-3  border-x border-y">Remove Service</th>
               </tr>
             </thead>
             <tbody className="border-b border-gray-300">
@@ -73,21 +75,13 @@ const ChargesOnInvoice = () => {
                     <p>{charge.total}</p>
                   </td>
                   <td className="px-3 py-2 flex justify-center align-middle border-x border-y ">
-                    {/* <button
+                    <button
                       type="button"
-                      onClick={() =>{
-                        setchargeissionInfo({
-                          id: charge.id,
-                          date: charge.date_created,
-                          doctor: charge.doctor_full_name,
-                          patient: charge.patient_full_name,
-                        }); 
-                        // navigate('/charges')
-                      }}
                       className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
+                      onClick={() => deleteChargeHandler(charge.charge_id)}
                     >
                       <img src={play} className="w-6" />
-                    </button> */}
+                    </button>
                   </td>
                 </tr>
               ))}
