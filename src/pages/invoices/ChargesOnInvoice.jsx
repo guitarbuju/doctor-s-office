@@ -1,4 +1,4 @@
-import { formatDate } from "../../api/formatDate";
+
 import {  getDniData } from "../../api/fetchData";
 import { useEffect, useState } from "react";
 // import play from "../../assets/icons8-play-50.png";
@@ -31,7 +31,7 @@ const ChargesOnInvoice = () => {
   }, []);
 
  
-
+  
   console.log(chargeList);
   console.log(admissionsInfo);
   
@@ -40,9 +40,11 @@ const ChargesOnInvoice = () => {
     <div >
    
       <div className="container p-2 mx-auto sm:p-4 text-gray-900">
-        <h2 className="mb-4 text-2xl font-semibold leading-tight">
+        <h2 className="mb-4 text-2xl font-semibold leading-tight ">
           Outstanding Charges 
         </h2>
+       
+
         <div className="overflow-x-auto">
           <table className="w-full p-6 text-xs text-left whitespace-nowrap">
             <thead>
@@ -64,7 +66,7 @@ const ChargesOnInvoice = () => {
                     <p>{charge.doctor}</p>
                   </td>
                   <td className="px-3 py-2 border-x border-y bg-zinc-200 ">
-                    <span>{formatDate(charge.charge_id)}</span>
+                    <span>{charge.charge_id}</span>
                   </td>
                   <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     <span>{charge.service_title}</span>
@@ -99,7 +101,9 @@ const ChargesOnInvoice = () => {
               ))}
             </tbody>
           </table>
+          
         </div>
+        <span className="text-md mt-8">Total Charges:{chargeList?.total[0]?.total_sum}</span>
       </div>
     </div>
   );
