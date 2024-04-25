@@ -85,9 +85,9 @@ const AdmissionsTable = () => {
                         // navigate('/charges')
                          navigate('/charges/add')
                       }}
-                      className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
+                      className="h-6 ml-2 mt-4 bg-medBlue hover:bg-purple-400 text-gray-100 px-2  rounded transition duration-150 text-xs"
                     >
-                      <img src={play} className="w-6" />
+                     Add Charges
                     </button>
                   </td>
                 </tr>

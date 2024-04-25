@@ -64,10 +64,11 @@ const InputChargeForm = () => {
         <div className="flex flex-col items-center text-xs">
           <label>Service</label>
           <select
-            className="border rounded-md py-1"
+            className="border rounded-md py-1 w-52"
             {...register("serviceId", {
               required: true,
             })}
+           
           >
             {inputRequestedData?.services?.data?.map((service) => (
               <option key={service.id} value={service.id}>
@@ -81,7 +82,7 @@ const InputChargeForm = () => {
           <input
             type="text"
             list="drList"
-            className="border rounded-md py-1"
+            className="border rounded-md py-1 w-52"
             placeholder="Input Dr. Name"
             required
             {...register("id", {
@@ -100,6 +101,7 @@ const InputChargeForm = () => {
           <label>Quantity</label>
           <input
             className="border rounded-md py-1 w-12 "
+            placeholder="--"
             {...register("num", {
               required: true,
             })}

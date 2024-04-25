@@ -1,6 +1,6 @@
 import { deleteById, getDniData } from "../../api/fetchData";
 import { useEffect, useState } from "react";
-import play from "../../assets/icons8-play-50.png";
+import { formatDate } from "../../api/formatDate";
 // import { useAppointmentsInfoStore } from "../../../store";
 // import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
     }
   };
 
-  
+  console.log(chargeList)
 
   const deleteChargeHandler = async (id) => {
     const deleteChargeById = await deleteById(url, id);
@@ -34,14 +34,15 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
     <div>
       <div className="container p-2 mx-auto sm:p-4 text-gray-900">
    
-        <h2 className="mb-4 text-2xl font-semibold leading-tight ">
+        <h2 className="mb-4 text-lg font-semibold leading-tight ">
          {chargeList ? " Outstanding Charges": "The List is Temporarily Empty"}
         </h2>
          <h2>Charges for patient {admissionsInfo.patient} Admissions ID:{admissionsInfo.id}</h2>
         <div className="overflow-x-auto">
-          <table className="w-full p-6 text-xs text-left whitespace-nowrap">
+          <table className="w-full text-xs text-left whitespace-nowrap">
             <thead>
-              <tr className=" text-lg bg-zinc-200">
+              <tr className=" text-sm bg-zinc-200">
+                <th className="p-3  border-x border-y">Date</th>
                 <th className="p-3  border-x border-y">Doctor</th>
                 <th className="p-3 border-x border-y">Id</th>
                 <th className="p-3  border-x border-y">Service</th>
@@ -54,6 +55,9 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
             <tbody className="border-b border-gray-300">
               {chargeList?.data?.map((charge, index) => (
                 <tr className="text-sm" key={index}>
+                  <td className=" border-x border-y bg-zinc-200 ">
+                    <p>{ formatDate(charge.date_created)}</p>
+                  </td>
                   <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     <p>{charge.doctor}</p>
                   </td>
@@ -69,16 +73,16 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
                   <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     <p>{charge.price}</p>
                   </td>
-                  <td className="px-3 py-2 border-x border-y bg-zinc-100">
+                  <td className="px-3 py-2 border-x border-y bg-zinc-200">
                     <p>{charge.total}</p>
                   </td>
                   <td className="px-3 py-2 flex justify-center align-middle border-x border-y ">
                     <button
                       type="button"
-                      className="flex justify-center align-middle w-40 transition-transform transform hover:scale-150"
+                      className="h-6 ml-2 mt-4 bg-amber-400 hover:bg-amber-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
                       onClick={() => deleteChargeHandler(charge.charge_id)}
                     >
-                      <img src={play} className="w-6" />
+                      Remove
                     </button>
                   </td>
                 </tr>
@@ -87,12 +91,23 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
           </table>
         </div>
       </div>
-    
+    <div>
       {chargeList?.total && chargeList.total.length > 0 && (
-        <span className="text-md mt-2 flex justify-end">
+       <div>
+       <span className="text-md mt-2 flex justify-end">
           Total Charges: {chargeList.total[0].total_sum}
         </span>
+        <button
+          type="button"
+          className="py-2 bg-purple-400 hover:bg-purple-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+        >
+          Create Invoice
+        </button>
+       </div>
+       
       )}
+    </div>
+      
     </div>
   );
 };
