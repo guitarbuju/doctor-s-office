@@ -1,14 +1,16 @@
 import { deleteById, getDniData } from "../../api/fetchData";
 import { useEffect, useState } from "react";
 import { formatDate } from "../../api/formatDate";
+import CreateInvoiceModal from "./CreateInvoiceModal";
 // import { useAppointmentsInfoStore } from "../../../store";
-// import { useNavigate } from "react-router-dom";
+
 
 const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
+  const [isOpen ,setIsOpen]= useState(false)
   const [chargeList, setChargeList] = useState([]);
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/charges`;
-
+ 
   useEffect(() => {
     getCharges();
   }, [reload]);
@@ -29,6 +31,8 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
     getCharges();
     console.log(deleteChargeById);
   };
+
+  
 
   return (
     <div>
@@ -100,6 +104,7 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
         <button
           type="button"
           className="py-2 bg-purple-400 hover:bg-purple-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+          onClick={()=>setIsOpen(true)}
         >
           Create Invoice
         </button>
@@ -107,7 +112,7 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
        
       )}
     </div>
-      
+      <CreateInvoiceModal admissionsInfo={ admissionsInfo} isOpen={isOpen} setIsOpen={setIsOpen}/>
     </div>
   );
 };
