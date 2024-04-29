@@ -10,6 +10,7 @@ export const arrangeData = (data) => {
           doctor_full_name: curr.doctor_full_name,
           title: curr.title,
           patient_full_name: curr.patient_full_name,
+          status:curr.status
         });
       } else {
         acc.push({
@@ -19,6 +20,7 @@ export const arrangeData = (data) => {
           patient_full_name: curr.patient_full_name,
           invoice_total: curr.invoice_total,
           doctor_full_name: curr.doctor_full_name,
+          status:curr.status,
           charges: [
             {
               charge_date: curr.charge_date,
