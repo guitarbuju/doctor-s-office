@@ -19,7 +19,7 @@ function CreateInvoiceModal({ isOpen, setIsOpen, admissionsInfo }) {
       setResponse(sendIdtoApi);
       setTimeout(() => {
         setShowSpinner(false);
-      }, 2000);
+      }, 1000);
 
     } catch (error) {
       console.log(error);
