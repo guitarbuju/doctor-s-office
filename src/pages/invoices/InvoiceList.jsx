@@ -1,28 +1,40 @@
 import { useEffect, useState } from "react";
-import { getDniData } from "../../api/fetchData";
+import { getDniData, postPersonDni } from "../../api/fetchData";
 import { formatDate } from "../../api/formatDate";
 import { arrangeData } from "../../api/groupedData";
 
 const InvoiceList = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/invoices`;
+  const urlAnnull = `${BASE_URL}/invoices/annull`;
   const [fetchedList, setFetchedList] = useState([]);
   const [status, setStatus] = useState("pending");
+  // const [ annulledId, setAnnulledId ] = ('');
 
   useEffect(() => {
-    const getInvoiceList = async () => {
-      try {
-        const responseList = await getDniData(url, status);
-        const dataToArrange = arrangeData(responseList.data);
-        setFetchedList(dataToArrange);
-      } catch (error) {
-        console.error(error);
-        // Handle error if needed
-      }
-    };
-
     getInvoiceList();
   }, [status]);
+
+  const getInvoiceList = async () => {
+    try {
+      const responseList = await getDniData(url, status);
+      const dataToArrange = arrangeData(responseList.data);
+      setFetchedList(dataToArrange);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const anullInvoice = async (id) => {
+    console.log(id);
+    try {
+      const annulledInvoice = await postPersonDni(urlAnnull, id);
+      console.log(annulledInvoice.message);
+      getInvoiceList();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   console.log(fetchedList);
   return (
@@ -88,15 +100,19 @@ const InvoiceList = () => {
                     <p>{invoice.status}</p>
                   </td>
 
-                  <td className="px-3 py-2 flex justify-center align-middle border-x border-y bg-zinc-100">
-                    <button
-                      type="button"
-                      className="h-6 ml-2 mt-4 bg-amber-400 hover:bg-amber-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
-                      // onClick={() => deleteinvoiceHandler(invoice.invoice_id)}
-                    >
-                      Anull Invoice
-                    </button>
-                  </td>
+                  {status != "annulled" ? (
+                    <td className="px-3 py-2 flex justify-center align-middle border-x border-y bg-zinc-100">
+                      <button
+                        type="button"
+                        className="h-6 ml-2 mt-4 bg-amber-400 hover:bg-amber-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+                        onClick={() => anullInvoice(invoice.invoice_id)}
+                      >
+                        Anull Invoice
+                      </button>
+                    </td>
+                  ) : (
+                    <span className="flex justify-center semibold">--</span>
+                  )}
                 </tr>
               ))}
             </tbody>
