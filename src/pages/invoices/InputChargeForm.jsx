@@ -119,6 +119,7 @@ const InputChargeForm = () => {
       
     </form>
     <ChargesOnInvoice admissionsInfo={admissionsInfo} reload={reloadCharges} />
+    
     </div>
   );
 };
