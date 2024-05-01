@@ -9,8 +9,9 @@ export const arrangeData = (data) => {
           total: curr.total,
           doctor_full_name: curr.doctor_full_name,
           title: curr.title,
-          patient_full_name: curr.patient_full_name,
-          status:curr.status
+          price:curr.price,
+          amount:curr.amount,
+           status:curr.status
         });
       } else {
         acc.push({
@@ -26,7 +27,9 @@ export const arrangeData = (data) => {
               charge_date: curr.charge_date,
               total: curr.total,
               title: curr.title,
-              patient_full_name: curr.patient_full_name,
+              price:curr.price,
+              amount:curr.amount,
+
             },
           ],
         });

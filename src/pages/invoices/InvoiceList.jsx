@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { getDniData, postPersonDni } from "../../api/fetchData";
 import { formatDate } from "../../api/formatDate";
 import { arrangeData } from "../../api/groupedData";
+import PDFInvoice from "./pdf/PDFInvoice";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { styles } from './pdf/styles.js'
 
 const InvoiceList = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -9,7 +12,7 @@ const InvoiceList = () => {
   const urlAnnull = `${BASE_URL}/invoices/annull`;
   const [fetchedList, setFetchedList] = useState([]);
   const [status, setStatus] = useState("pending");
-  // const [ annulledId, setAnnulledId ] = ('');
+  const [getInvoiceId, setGetInvoiceId] = useState(null);
 
   useEffect(() => {
     getInvoiceList();
@@ -30,13 +33,17 @@ const InvoiceList = () => {
     try {
       const annulledInvoice = await postPersonDni(urlAnnull, id);
       console.log(annulledInvoice.message);
+      setGetInvoiceId(id);
       getInvoiceList();
     } catch (error) {
       console.error(error);
     }
   };
 
+  
+
   console.log(fetchedList);
+  console.log(getInvoiceId);
   return (
     <div>
       <div className="container p-2 mx-auto sm:p-4 text-gray-900 ">
@@ -100,18 +107,40 @@ const InvoiceList = () => {
                     <p>{invoice.status}</p>
                   </td>
 
-                  {status != "annulled" ? (
+                  {status === "annulled" ? (
                     <td className="px-3 py-2 flex justify-center align-middle border-x border-y bg-zinc-100">
+                    <PDFDownloadLink
+                    style={styles.button}
+                        document={<PDFInvoice  getInvoiceId={ invoice.invoice_id} />}
+                        fileName="invoice.pdf"
+                        
+
+                      >
+                        {({  loading }) =>
+                          loading ? "Loading document..." : "Download"
+                        }
+                      </PDFDownloadLink>
+                    </td>
+                  ) : (
+                    <td className="flex flex-col border-x border-y">
+                      <PDFDownloadLink
+                        document={<PDFInvoice  getInvoiceId={ invoice.invoice_id}  />}
+                        fileName="invoice.pdf"
+                        style={styles.button}
+
+                      >
+                        {({  loading }) =>
+                          loading ? "Loading document..." : "Download"
+                        }
+                      </PDFDownloadLink>
                       <button
                         type="button"
-                        className="h-6 ml-2 mt-4 bg-amber-400 hover:bg-amber-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+                        className="h-6 ml-2 mt-1 bg-red-400 hover:bg-red-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
                         onClick={() => anullInvoice(invoice.invoice_id)}
                       >
                         Anull Invoice
                       </button>
                     </td>
-                  ) : (
-                    <span className="flex justify-center semibold">--</span>
                   )}
                 </tr>
               ))}
@@ -119,7 +148,6 @@ const InvoiceList = () => {
           </table>
         </div>
       </div>
-      <div></div>
     </div>
   );
 };
