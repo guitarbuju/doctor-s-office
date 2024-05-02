@@ -75,7 +75,7 @@ const InvoiceList = () => {
         </div>
 
         <div className="overflow-x-auto">
-        {fetchedList?.length === 0 ? (<span>No invoices available</span>):
+        {fetchedList?.length === 0 ? (<h2  className="text-3xl font-semibold leading-tight " >No invoices available</h2>):
          ( <table className="w-full text-xs text-left whitespace-nowrap">
             <thead>
               <tr className=" text-sm bg-zinc-200">
