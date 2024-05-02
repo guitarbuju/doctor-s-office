@@ -45,7 +45,7 @@ function CreateInvoiceModal({ isOpen, setIsOpen, admissionsInfo }) {
             {showSpinner ? (
               <span className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-medBlue"></span>
             ) : (
-              <span>{response.message}</span>
+              <span>{response?.message}</span>
             )}
             {!showSpinner && response.data && response.data.length > 0 && (
               <span className="text-lg font-semibold ml-2">

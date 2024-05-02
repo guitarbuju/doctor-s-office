@@ -73,7 +73,7 @@ console.error(error);
 
 export const getDniData = async(url,data)=>{
   const patchURL=`${url}/${data}`;
-  console.log(patchURL,data)
+  // console.log(patchURL,data)
   try{
     const response = await axios.get(patchURL);
     return response.data;

@@ -14,7 +14,6 @@ const PDFInvoice = ({ getInvoiceId }) => {
   const getOneInvoice = async () => {
     const response = await getDniData(url, getInvoiceId);
     const dataToArrange = arrangeData(response.data);
-    console.log(dataToArrange);
     setSelectedInvoice(dataToArrange);
   };
 
@@ -22,7 +21,7 @@ const PDFInvoice = ({ getInvoiceId }) => {
     getOneInvoice();
   }, [getInvoiceId]);
 
-  console.log(selectedInvoice);
+
 
   return (
     <Document>

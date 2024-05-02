@@ -5,6 +5,7 @@ import { arrangeData } from "../../api/groupedData";
 import PDFInvoice from "./pdf/PDFInvoice";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { styles } from './pdf/styles.js'
+import AnullModal from "./AnullModal.jsx";
 
 const InvoiceList = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -13,6 +14,7 @@ const InvoiceList = () => {
   const [fetchedList, setFetchedList] = useState([]);
   const [status, setStatus] = useState("pending");
   const [getInvoiceId, setGetInvoiceId] = useState(null);
+  const [ isOpen, setIsOpen ] = useState(false)
 
   useEffect(() => {
     getInvoiceList();
@@ -21,20 +23,24 @@ const InvoiceList = () => {
   const getInvoiceList = async () => {
     try {
       const responseList = await getDniData(url, status);
-      const dataToArrange = arrangeData(responseList.data);
-      setFetchedList(dataToArrange);
+      if (responseList.data && responseList.data.length > 0) {
+        const dataToArrange = arrangeData(responseList.data);
+        setFetchedList(dataToArrange);
+      } else {
+        setFetchedList([]); // Set fetchedList to an empty array
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const anullInvoice = async (id) => {
+  const annullInvoice = async (id) => {
     console.log(id);
     try {
       const annulledInvoice = await postPersonDni(urlAnnull, id);
       console.log(annulledInvoice.message);
-      setGetInvoiceId(id);
-      getInvoiceList();
+      //  setGetInvoiceId(id);
+       getInvoiceList();
     } catch (error) {
       console.error(error);
     }
@@ -43,7 +49,7 @@ const InvoiceList = () => {
   
 
   console.log(fetchedList);
-  console.log(getInvoiceId);
+  
   return (
     <div>
       <div className="container p-2 mx-auto sm:p-4 text-gray-900 ">
@@ -69,7 +75,8 @@ const InvoiceList = () => {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left whitespace-nowrap">
+        {fetchedList?.length === 0 ? (<span>No invoices available</span>):
+         ( <table className="w-full text-xs text-left whitespace-nowrap">
             <thead>
               <tr className=" text-sm bg-zinc-200">
                 <th className="p-3  border-x border-y">Invoice Number</th>
@@ -136,7 +143,7 @@ const InvoiceList = () => {
                       <button
                         type="button"
                         className="h-6 ml-2 mt-1 bg-red-400 hover:bg-red-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
-                        onClick={() => anullInvoice(invoice.invoice_id)}
+                        onClick={() => {setGetInvoiceId(invoice.invoice_id); setIsOpen(true)}}
                       >
                         Anull Invoice
                       </button>
@@ -146,7 +153,9 @@ const InvoiceList = () => {
               ))}
             </tbody>
           </table>
+          )}
         </div>
+        <AnullModal getInvoiceId={getInvoiceId} isOpen={ isOpen } setIsOpen={setIsOpen}  annullInvoice={annullInvoice}/>
       </div>
     </div>
   );
