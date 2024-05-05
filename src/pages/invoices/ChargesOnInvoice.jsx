@@ -57,7 +57,7 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
               </tr>
             </thead>
             <tbody className="border-b border-gray-300">
-              {chargeList?.data?.map((charge, index) => (
+              {chargeList?.data?.data?.map((charge, index) => (
                 <tr className="text-sm" key={index}>
                   <td className=" border-x border-y bg-zinc-200 ">
                     <p>{ formatDate(charge.date_created)}</p>
@@ -96,10 +96,11 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
         </div>
       </div>
     <div>
-      {chargeList?.total && chargeList.total.length > 0 && (
-       <div>
+     
+      {chargeList?.data?.data?.length > 0 && 
+        <div>
        <span className="text-md mt-2 flex justify-end">
-          Total Charges: {chargeList.total[0].total_sum}
+          Total Charges: {chargeList.data.total[0].total_sum}
         </span>
         <button
           type="button"
@@ -108,9 +109,8 @@ const ChargesOnInvoice = ({ admissionsInfo , reload }) => {
         >
           Create Invoice
         </button>
-       </div>
-       
-      )}
+       </div>}
+      
     </div>
       <CreateInvoiceModal admissionsInfo={ admissionsInfo} isOpen={isOpen} setIsOpen={setIsOpen}/>
     </div>

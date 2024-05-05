@@ -17,6 +17,7 @@ import AdmissionCharger from "./pages/admissions/AdmissionCharger.jsx";
 import InvoiceCharter from "./pages/invoices/InvoiceCharter.jsx";
 import InputChargeForm from "./pages/invoices/InputChargeForm.jsx";
 import InvoiceList from "./pages/invoices/InvoiceList.jsx";
+import DiscountVoucher from "./pages/receivables/DiscountVoucher.jsx";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/charges/add" element={<InputChargeForm/>} />
         <Route path="/invoices" element={<InvoiceCharter/>} />
         <Route path="/invoices/list" element={<InvoiceList/>}/>
+        <Route path="/discounts" element={<DiscountVoucher/>}/>
         <Route path="/administration" element={<SwitchBoard/>} />
         <Route path="/services" element={<ServiceForm />}/>
         <Route path="*" element={<NotFound/>}/>
