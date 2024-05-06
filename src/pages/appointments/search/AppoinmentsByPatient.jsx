@@ -23,7 +23,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
   const clickHandler = (id) => {
     setIsOpen(true);
     setAdmissionId(id);
-    const foundAppointment = foundAppointments?.data?.find(
+    const foundAppointment = foundAppointments?.data?.data?.find(
       (app) => app.appointment_id === id
     );
     setFoundAppointmentForModal(foundAppointment);
@@ -76,7 +76,7 @@ const AppoinmentsByPatient = ({ foundPatient }) => {
                   </tr>
                 </thead>
                 <tbody className="border-b border-gray-300 ">
-                  {foundAppointments?.data?.map((app, index) => (
+                  {foundAppointments?.data?.data?.map((app, index) => (
                     <tr className="text-sm rounded-2xl" key={index}>
                       <td className="px-3 py-2 border-x border-y bg-zinc-100 rounded-sm">
                         <p>{app.appointment_id}</p>
