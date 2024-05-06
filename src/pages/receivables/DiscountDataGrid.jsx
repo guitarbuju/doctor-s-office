@@ -7,8 +7,9 @@ const DiscountDataGrid = ({ foundPatient }) => {
   const url = `${BASE_URL}/discounts/vouchers`;
 
   const [discount, setDiscount] = useState("");
+  const [hiddenRows, setHiddenRows] = useState([]);
 
-  const inputChangeHandler = (e, admissionId) => {
+  const inputChangeHandler = (e) => {
     setDiscount(e.target.value);
   };
 
@@ -20,6 +21,7 @@ const DiscountDataGrid = ({ foundPatient }) => {
 
     console.log(dataToApi);
     const dataPost = await postPersonData(url, dataToApi);
+    setHiddenRows([...hiddenRows, admissionId]);
      console.log(dataPost);
   };
 
@@ -47,7 +49,8 @@ const DiscountDataGrid = ({ foundPatient }) => {
               </thead>
               <tbody className="border-b dark:bg-gray-50 dark:border-gray-300">
                 {foundPatient?.data?.data?.map((admission, admission_id) => (
-                  <tr className="text-sm" key={admission_id}>
+                  <tr className={hiddenRows.includes(admission.admission_id) ? "hidden" : "text-sm"} 
+                  key={admission_id}>
                     <td className="px-3 py-2">
                       <p>{admission.patient_full_name}</p>
                     </td>
