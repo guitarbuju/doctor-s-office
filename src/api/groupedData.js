@@ -1,7 +1,7 @@
-export const arrangeData = (data) => {
+export const arrangeData = (dadata) => {
    
   
-    const groupedData = data.reduce((acc, curr) => {
+    const groupedData = dadata.reduce((acc, curr) => {
       const existingItem = acc.find((item) => item.invoice_id === curr.invoice_id);
       if (existingItem) {
         existingItem.charges.push({

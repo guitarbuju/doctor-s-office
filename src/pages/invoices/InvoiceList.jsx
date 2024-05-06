@@ -23,8 +23,9 @@ const InvoiceList = () => {
   const getInvoiceList = async () => {
     try {
       const responseList = await getDniData(url, status);
-      if (responseList.data && responseList.data.length > 0) {
-        const dataToArrange = arrangeData(responseList.data);
+      if (responseList.data?.data && responseList.data?.data.length > 0) {
+        const dataToArrange = arrangeData(responseList.data.data);
+        console.log('culo',responseList.data.data)
         setFetchedList(dataToArrange);
       } else {
         setFetchedList([]); // Set fetchedList to an empty array

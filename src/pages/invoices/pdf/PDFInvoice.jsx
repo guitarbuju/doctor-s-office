@@ -13,7 +13,7 @@ const PDFInvoice = ({ getInvoiceId }) => {
 
   const getOneInvoice = async () => {
     const response = await getDniData(url, getInvoiceId);
-    const dataToArrange = arrangeData(response.data);
+    const dataToArrange = arrangeData(response.data.data);
     setSelectedInvoice(dataToArrange);
   };
 
