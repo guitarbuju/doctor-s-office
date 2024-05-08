@@ -10,14 +10,25 @@ const DiscountDataGrid = ({ foundPatient }) => {
   const [hiddenRows, setHiddenRows] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [clickedAdmissionId, setClickedAdmissionId] = useState(null);
+  const [ balance , setBalance ]= useState(null);
+  const [ errorMessage, setErrorMessage]=useState('');
 
   const inputChangeHandler = (e) => {
     setDiscount(e.target.value);
+   
   };
 
-  const clickHandler = async (admissionId) => {
+  const clickHandler = async (admissionId, netAmount) => {
+     
+    console.log('discount:',discount,'netAmount:',netAmount)
+    
+    const validDiscount= parseFloat(discount)
+     if (discount > balance || discount < 0 ){
+     setErrorMessage('The discount amount cannot be superior to the outstanding balance nor negative value')
+    return }
+    
     const dataToApi = {
-      discount: discount,
+      discount: validDiscount,
       admission_id: admissionId,
     };
 
@@ -76,37 +87,60 @@ const DiscountDataGrid = ({ foundPatient }) => {
                     <td className="px-3 py-2">
                       <p>{admission.invoice_total}</p>
                     </td>
-                    <td className="px-3 py-2">
-                      <p>{admission.net_amount}</p>
+                    <td className="px-3 py-2 font-bold">
+                      <p>
+                        {admission.net_amount === null
+                          ? "$0.00"
+                          : admission.net_amount}
+                      </p>
+                      {/* {console.log(
+                        "balance",
+                        admission.net_amount,
+                        " ",
+                        typeof admission.net_amount
+                      )} */}
                     </td>
                     <td className="px-3 py-2 hidden">
                       <input
                         className="border rounded-md py-1 w-20"
                         placeholder="--"
                         onChange={(e) =>
-                          inputChangeHandler(e, admission.admission_id)
+                          inputChangeHandler(e)
                         }
                       />
                     </td>
                     <td className="px-3 py-2">
-                      <input
-                        className="border rounded-md py-1 w-20"
-                        placeholder="--"
-                        onChange={(e) => setDiscount(e.target.value)}
-                        type="number"
-                      />
+                      {admission.net_amount !== 0 ? (
+                        <input
+                          min="0"
+                          className="border rounded-md py-1 w-20"
+                          placeholder="--" 
+                          type="number"
+                          onChange={(e) => {
+                          setDiscount(e.target.value)
+                          }}
+                         
+                          />
+                      ) : (
+                        ""
+                      )}
                     </td>
                     <td className="px-3 py-2">
-                      <button
-                        type="button"
-                        className="h-6 ml-2 mt-1 bg-medBlue hover:bg-cyan-700 text-gray-100 px-2 rounded transition duration-150 text-xs"
-                        onClick={() => {
-                          setIsOpen(true);
-                          setClickedAdmissionId(admission.admission_id);
-                        }}
-                      >
-                        Get Discount
-                      </button>
+                      {admission.net_amount !== 0 ? (
+                        <button
+                          type="button"
+                          className="h-6 ml-2 mt-1 bg-medBlue hover:bg-cyan-700 text-gray-100 px-2 rounded transition duration-150 text-xs"
+                          onClick={() => {
+                            setIsOpen(true);
+                            setClickedAdmissionId(admission.admission_id);
+                            setBalance(admission.net_amount);
+                          }}
+                        >
+                          Get Discount
+                        </button>
+                      ) : (
+                        <span>Paid</span>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -120,6 +154,9 @@ const DiscountDataGrid = ({ foundPatient }) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         admissionId={clickedAdmissionId}
+        netAmount = {balance}
+        errorMessage={ errorMessage }
+        setErrorMessage={setErrorMessage}
       />
     </div>
   );
