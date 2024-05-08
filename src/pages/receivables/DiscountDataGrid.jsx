@@ -23,8 +23,8 @@ const DiscountDataGrid = ({ foundPatient }) => {
     console.log('discount:',discount,'netAmount:',netAmount)
     
     const validDiscount= parseFloat(discount)
-     if (discount > balance || discount < 0 ){
-     setErrorMessage('The discount amount cannot be superior to the outstanding balance nor negative value')
+     if (discount > balance || discount <= 0 ){
+     setErrorMessage('The discount amount cannot be superior to the outstanding balance nor 0 or negative value')
     return }
     
     const dataToApi = {
