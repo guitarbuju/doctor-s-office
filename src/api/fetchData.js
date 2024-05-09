@@ -6,6 +6,7 @@ export const postPersonData = async (url, data) => {
     return response.data; 
   } catch (error) {
     console.error(error);
+    return error;
   }
 };
 

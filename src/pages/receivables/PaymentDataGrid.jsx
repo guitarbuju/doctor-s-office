@@ -1,45 +1,56 @@
 import { useState } from "react";
 import { postPersonData } from "../../api/fetchData";
-import DiscountModal from "./DiscountModal";
+import PaymentModal from "./PaymentModal";
 import { formatDate } from "../../api/formatDate";
 
-const DiscountDataGrid = ({ foundPatient }) => {
+const PaymentDataGrid = ({ foundPatient }) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const url = `${BASE_URL}/discounts/vouchers`;
+  const url = `${BASE_URL}/payments/vouchers`;
 
-  const [discount, setDiscount] = useState("");
+  const [payment, setPayment] = useState({
+    payment: "",
+    card_holder: "",
+    card_number: "",
+    cvv: "",
+    expiration_date: "",
+    card_issuer: "Visa",
+  });
   const [hiddenRows, setHiddenRows] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [clickedAdmissionId, setClickedAdmissionId] = useState(null);
   const [balance, setBalance] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [outputMessage, setOutputMessage] = useState("");
 
-  const inputChangeHandler = (e) => {
-    setDiscount(e.target.value);
-  };
-
-  const clickHandler = async (admissionId, netAmount) => {
-    console.log("discount:", discount, "netAmount:", netAmount);
-
-    const validDiscount = parseFloat(discount);
-    if (discount > balance || discount <= 0) {
-      setErrorMessage(
-        "The discount amount cannot be superior to the outstanding balance nor 0 or negative value"
+  const clickHandler = async (admissionId) => {
+    const validPayment = parseFloat(payment.payment);
+    if (validPayment > balance || validPayment <= 0) {
+      setOutputMessage(
+        "The payment amount cannot be superior to the outstanding balance nor 0 or negative value"
       );
       return;
     }
 
     const dataToApi = {
-      discount: validDiscount,
+      payment: validPayment,
       admission_id: admissionId,
+      card_holder: payment.card_holder,
+      card_number: payment.card_number,
+      cvv: payment.cvv,
+      expiration_date: payment.expiration_date,
+      card_issuer: payment.card_issuer,
     };
 
-    console.log(dataToApi);
     const dataPost = await postPersonData(url, dataToApi);
-    setHiddenRows([...hiddenRows, admissionId]);
-    console.log(dataPost);
-    setIsOpen(false);
+
+    if (dataPost.response?.data?.error) {
+      setOutputMessage(dataPost.response.data.error);
+    } else {
+      setOutputMessage(dataPost.message);
+      setHiddenRows([...hiddenRows, admissionId]);
+    }
   };
+
+  console.log(outputMessage);
 
   return (
     <div className="bg-zinc-50">
@@ -61,8 +72,7 @@ const DiscountDataGrid = ({ foundPatient }) => {
                   <th className="p-3 border-x border-y w-8">Payments Total</th>
                   <th className="p-3 border-x border-y w-8">Discounts Total</th>
                   <th className="p-3 border-x border-y w-8">Balance</th>
-                  <th className="p-3 border-x border-y w-8">Discount</th>
-                  <th className="p-3 border-x border-y w-8">Submit</th>
+                  <th className="p-3 border-x border-y w-8">Pay</th>
                 </tr>
               </thead>
               <tbody className="border-b bg-zinc-200">
@@ -75,7 +85,6 @@ const DiscountDataGrid = ({ foundPatient }) => {
                     }
                     key={admission_id}
                   >
-                    
                     <td className="px-1 py-2">
                       <p>{admission.admission_id}</p>
                     </td>
@@ -109,7 +118,7 @@ const DiscountDataGrid = ({ foundPatient }) => {
                         })}
                       </p>
                     </td>
-                    <td className="px-3 py-2 font-bold  bg-zinc-50">
+                    <td className="px-3 py-2 font-semibold  bg-zinc-50">
                       <p>
                         {admission.net_amount === null
                           ? "$0.00"
@@ -119,40 +128,19 @@ const DiscountDataGrid = ({ foundPatient }) => {
                             })}
                       </p>
                     </td>
-                    <td className="px-3 py-2 hidden">
-                      <input
-                        className="border rounded-md py-1 w-20"
-                        placeholder="--"
-                        onChange={(e) => inputChangeHandler(e)}
-                      />
-                    </td>
-                    <td className="px-3 py-2  bg-zinc-50">
-                      {admission.net_amount !== 0 ? (
-                        <input
-                          min="0"
-                          className="border rounded-md py-1 w-20"
-                          placeholder="--"
-                          type="number"
-                          onChange={(e) => {
-                            setDiscount(e.target.value);
-                          }}
-                        />
-                      ) : (
-                        ""
-                      )}
-                    </td>
+
                     <td className="px-3 py-2  bg-zinc-50">
                       {admission.net_amount !== 0 ? (
                         <button
                           type="button"
-                          className="h-6 ml-2 mt-1 bg-medBlue hover:bg-cyan-700 text-gray-100 px-2 rounded transition duration-150 text-xs"
+                          className="h-6 ml-2 mt-1 bg-amber-400 hover:bg-amber-600 text-gray-100 px-2 rounded transition duration-150 text-xs"
                           onClick={() => {
                             setIsOpen(true);
                             setClickedAdmissionId(admission.admission_id);
                             setBalance(admission.net_amount);
                           }}
                         >
-                          Get Discount
+                          Pay this bill
                         </button>
                       ) : (
                         <span>Paid</span>
@@ -165,17 +153,17 @@ const DiscountDataGrid = ({ foundPatient }) => {
           )}
         </div>
       </div>
-      <DiscountModal
+      <PaymentModal
         clickHandler={clickHandler}
+        setPayment={setPayment}
+        payment={payment}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        admissionId={clickedAdmissionId}
-        netAmount={balance}
-        errorMessage={errorMessage}
-        setErrorMessage={setErrorMessage}
+        clickedAdmissionId={clickedAdmissionId}
+        outputMessage={outputMessage}
       />
     </div>
   );
 };
 
-export default DiscountDataGrid;
+export default PaymentDataGrid;
