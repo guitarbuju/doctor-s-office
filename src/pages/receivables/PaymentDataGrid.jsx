@@ -25,7 +25,7 @@ const PaymentDataGrid = ({ foundPatient }) => {
     const validPayment = parseFloat(payment.payment);
     if (validPayment > balance || validPayment <= 0) {
       setOutputMessage(
-        "The payment amount cannot be superior to the outstanding balance nor 0 or negative value"
+        "The payment amount cannot exceed the outstanding balance or be zero or negative."
       );
       return;
     }

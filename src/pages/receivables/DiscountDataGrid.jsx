@@ -24,7 +24,7 @@ const DiscountDataGrid = ({ foundPatient }) => {
     const validDiscount = parseFloat(discount);
     if (discount > balance || discount <= 0) {
       setErrorMessage(
-        "The discount amount cannot be superior to the outstanding balance nor 0 or negative value"
+        "The discount amount cannot exceed the outstanding balance or be zero or negative."
       );
       return;
     }

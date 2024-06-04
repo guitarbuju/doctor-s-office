@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #fafafa;
+  min-height: 100vh;
+}
 
+.custom-shape-divider-top-1717498057 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
 
+.custom-shape-divider-top-1717498057 svg {
+    position: relative;
+    display: block;
+    width: calc(101% + 1.3px);
+    height: 150px;
+}
 
-body{
-    background-color: #FAFAFA;
-    min-height: 100vh;
+.custom-shape-divider-top-1717498057 .shape-fill {
+    fill: #79B2B9;
 }
