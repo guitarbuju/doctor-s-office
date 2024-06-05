@@ -6,33 +6,31 @@ import { usePatientsInfoStore } from "../../../store";
 
 const Patients = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/patients`;
-  const { register, handleSubmit, reset} = useForm();
-  
+  const { register, handleSubmit, reset } = useForm();
+
   //State variables
   const [patientCreated, setPatientCreated] = useState({});
   const storedPatientsInfo = usePatientsInfoStore(
     (state) => state.setPatientInfo
   );
-  
-//Post data to API
+
+  //Post data to API
   const onSubmit = async (data) => {
     try {
-      const recordPatientToApi = await postPersonData(url,data);
+      const recordPatientToApi = await postPersonData(url, data);
       //record respones
       setPatientCreated(recordPatientToApi);
-      
-      //load response to state manager context
-      const {dni,first_name,last_name }=recordPatientToApi.data[0];
 
-      const patientInfoToStore= {
+      //load response to state manager context
+      const { dni, first_name, last_name } = recordPatientToApi.data[0];
+
+      const patientInfoToStore = {
         dni: dni,
         name: first_name,
-        lastName:last_name
-      }
-    
-    storedPatientsInfo(patientInfoToStore)
-    
+        lastName: last_name,
+      };
 
+      storedPatientsInfo(patientInfoToStore);
 
       reset();
     } catch (error) {
@@ -46,136 +44,169 @@ const Patients = () => {
     }
   }, [patientCreated, reset]);
 
+  console.log(patientCreated);
 
-console.log(patientCreated)
-  
-return (
+  return (
     <>
-      
-      <div className="bg-medBlue">
-      <h1 className="text-5xl font-bold leading-none text-gray-100 py-4">
-             Patient&apos;s Personal Information
+      <section className="flex justify-around gap-4">
+        <article className="flex flex-col items-center">
+          <span className="block mb-2 ">EASYMED Patient Management System</span>
+          <h1 className="text-5xl font-extrabold ">
+            Patient&apos;s <br /> Register Form
           </h1>
+          <img
+            src="https://pngimg.com/uploads/doctor/doctor_PNG16003.png"
+            alt=""
+            className="object-cover w-[350px] h-[450px] rounded-md xl:col-span-3 mt-2"
+          />
+        </article>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="container flex flex-col mx-auto space-y-12 font-roboto bg-medBlue"
+          className="flex flex-col items-center justify-center p-12 -mt-10"
         >
-          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-medBlue">
-            <div className="space-y-2 col-span-full lg:col-span-1 bg-medBlue">
-              <p className="font-medium text-gray-200 text-lg">Personal Information</p>
-              {!patientCreated && <p className="text-xs text-gray-200">
-                Please enter patient`s information as requested.
-              </p>}
-              <div className="text-xs text-gray-200 flex flex-col bg-red-400 rounded-md ">
-                <div className="flex gap-2 align-middle justify-center text-xl">
-                  <p>{patientCreated.data?.[0]?.first_name}</p>
-                  <p>{patientCreated.data?.[0]?.last_name}</p>
+          <fieldset className="mx-auto w-full max-w-[550px] bg-zinc-50">
+            <div className="space-y-2 col-span-full lg:col-span-1">
+              {/* <p className="font-medium text-[#07074D] text-lg">Personal Information</p> */}
+              {!patientCreated && (
+                <p className="text-xs text-[#07074D]">
+                  Please enter patient`s information as requested.
+                </p>
+              )}
+              <div className="text-xs text-[#07074D] flex flex-col rounded-md ">
+                <div className="flex gap-2 align-middle justify-around text-xl">
+                  <p>{patientCreated.data?.[0]?.first_name} {patientCreated.data?.[0]?.last_name}</p>
+                  <Link
+                    
+                    className={`font-semibold text-sm text-[#6A64F1] underline ${
+                      Object.keys(patientCreated).length === 0
+                        ? "hidden"
+                        : "block"
+                    }`}
+                    to="/appointments"
+                  >
+                    Create Appointment?{" "}
+                  </Link>
                 </div>
 
                 <span className="text-lg">{patientCreated.message}</span>
               </div>
-              <img src='https://pngimg.com/uploads/doctor/doctor_PNG16003.png'/>
             </div>
-            <div className="grid grid-cols-2 gap-2 col-span-full lg:col-span-3">
-              <div className="">
-                <label htmlFor="first_name" className="text-sm text-gray-200">
+            <div className="flex flex-col">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="first_name"
+                  className="text-base font-medium text-[#07074D]"
+                >
                   First Name
                 </label>
                 <input
                   id="first_name"
                   type="text"
                   placeholder="First Name"
-                  className="w-full rounded-md p-1  focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
-                  {...register("first_name",{required:true})}
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("first_name", { required: true })}
                 />
               </div>
-              <div className="">
-                <label htmlFor="last_name" className="text-sm text-gray-200">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="last_name"
+                  className="text-base font-medium text-[#07074D]"
+                >
                   Last Name
                 </label>
                 <input
                   id="lastname"
                   type="text"
                   placeholder="Last Name"
-                  className="w-full p-1 rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
-                  {...register("last_name",{required:true})}
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("last_name", { required: true })}
                 />
               </div>
-              <div className="-mt-10">
-                <label htmlFor="email" className="text-sm text-gray-200">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="email"
+                  className="text-base font-medium text-[#07074D]"
+                >
                   Email
                 </label>
                 <input
                   id="email"
                   type="email"
                   placeholder="Email"
-                  className="w-full p-1 rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
-                  {...register("email",{required:true})}
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("email", { required: true })}
                 />
               </div>
-              <div className="-mt-10">
-                <label htmlFor="zip_code" className="text-sm text-gray-200">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="zip_code"
+                  className="text-base font-medium text-[#07074D]"
+                >
                   ZIP / Postal
                 </label>
                 <input
                   id="zip_code"
                   type="text"
                   placeholder="Zip Code"
-                  className="w-full p-1 rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
-                  {...register("zip_code",{required:true})}
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("zip_code", { required: true })}
                 />
               </div>
-              <div className="-mt-10">
-                <label htmlFor="phone" className="text-sm text-gray-200">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="phone"
+                  className="text-base font-medium text-[#07074D]"
+                >
                   Phone
                 </label>
                 <input
                   id="phone"
                   type="text"
                   placeholder="Phone Number"
-                  className="w-full p-1 rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
-                  {...register("phone",{required:true})}
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("phone", { required: true })}
                 />
               </div>
-              <div className="-mt-10">
-                <label htmlFor="birth_date" className="text-sm text-gray-200">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="birth_date"
+                  className="text-base font-medium text-[#07074D]"
+                >
                   Birth Date
                 </label>
                 <input
                   id="birth_date"
                   type="date"
                   placeholder="Birth Date"
-                  className="w-full p-1 rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
-                  {...register("birth_date",{required:true})}
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("birth_date", { required: true })}
                 />
               </div>
-              <div className="-mt-10">
-                <label htmlFor="dni" className="text-sm text-gray-200">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="dni"
+                  className="text-base font-medium text-[#07074D]"
+                >
                   Dni
                 </label>
                 <input
                   id="dni"
                   type="text"
                   placeholder="DNI"
-                  className="w-full p-1 rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
-                  {...register("dni",{required:true})}
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("dni", { required: true })}
                 />
               </div>
-              
-              
             </div>
-
           </fieldset>
-          <div className='flex gap-2 justify-center  '
-        >
+          <div className="flex gap-2 justify-center mt-2 ">
             <button
               type="submit"
-              className={`px-8 py-3 font-semibold rounded border bg-red-400 `}
-              
+              className="hover:shadow-htmlForm w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
             >
               Create Patient
             </button>
-           
+
             <button
               type="reset"
               className="px-8 py-3 font-semibold rounded border "
@@ -185,25 +216,14 @@ return (
             <Link
               type="button"
               className="px-8 py-3 font-semibold rounded border"
-              to='/'
+              to="/"
             >
               Home{" "}
             </Link>
-         
-            <Link
-              type="button"
-              className={`px-8 py-3 font-semibold rounded border ${Object.keys(patientCreated).length === 0 ? 'hidden' : 'block'}`}
-              to='/appointments'
-             
-            >
-              Create Appointment?{" "}
-            </Link>
-          
+
           </div>
-        
         </form>
-       
-      </div>
+      </section>
     </>
   );
 };
