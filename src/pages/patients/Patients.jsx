@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { usePatientsInfoStore } from "../../../store";
 
+
 const Patients = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/patients`;
   const { register, handleSubmit, reset } = useForm();
@@ -55,6 +56,7 @@ const Patients = () => {
             Patient&apos;s <br /> Register Form
           </h1>
           <img
+         
             src="https://pngimg.com/uploads/doctor/doctor_PNG16003.png"
             alt=""
             className="object-cover w-[350px] h-[450px] rounded-md xl:col-span-3 mt-2"
