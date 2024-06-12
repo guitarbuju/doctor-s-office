@@ -86,3 +86,17 @@ return error;
 
 }  
 
+
+
+export const getDateData = async (url, status, from, to) => {
+  const params = new URLSearchParams({ status, from, to }).toString();
+  const requestURL = `${url}?${params}`;
+
+  try {
+    const response = await axios.get(requestURL);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};

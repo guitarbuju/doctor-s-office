@@ -8,3 +8,8 @@ export const formatDate = (dateString) => {
     
     return `${day}-${month}-${year}`;
 };
+
+export const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
