@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 import { getDateData, postPersonDni } from "../../api/fetchData";
-import { formatDate, monthNames } from "../../api/formatDate";
+import { formatDate, monthNames , formatDateYearFirst} from "../../api/formatDate";
 import { arrangeData } from "../../api/groupedData";
 import PDFInvoice from "./pdf/PDFInvoice";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { styles } from "./pdf/styles.js";
 import AnullModal from "./AnullModal.jsx";
+import { useInvoiceIdStore } from "../../../store.js";
+import { Link } from "react-router-dom";
 
 const InvoiceList = () => {
 
 // Function to get the start and end dates of the current month
  const now = new Date();
- const currentMonth = monthNames[now.getMonth()+1];
+ const currentMonth = monthNames[now.getMonth()];
 
 
 const getCurrentMonthRange = () => {
   const start = new Date(now.getFullYear(), now.getMonth(), 1);
   const end = new Date()
   return {
-    from: formatDate(start),
-    to: formatDate(end),
+    from: formatDateYearFirst(start),
+    to: formatDateYearFirst(end),
+   
   };
 };
 
@@ -31,6 +34,9 @@ const getCurrentMonthRange = () => {
   const [range, setRange] = useState(getCurrentMonthRange());
   const [getInvoiceId, setGetInvoiceId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const setInvoiceIdToStore= useInvoiceIdStore( (state) => state.setInvoiceId)
+  
+ 
 
   console.log(range)
 
@@ -190,6 +196,17 @@ const getCurrentMonthRange = () => {
                         >
                           Anull Invoice
                         </button>
+                        
+                        <Link
+                          type="button"
+                          className="h-6 ml-2 mt-1 bg-orange-400 hover:bg-red-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+                          onClick={() => {
+                            setInvoiceIdToStore(invoice.invoice_id);
+                          }}
+                          to='/payments'
+                        >
+                         Pay Invoice
+                        </Link>
                       </td>
                     )}
                   </tr>

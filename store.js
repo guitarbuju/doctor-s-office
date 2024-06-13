@@ -37,3 +37,8 @@ export const useAppointmentsInfoStore = create((set) => ({
       },
     }),
 }));
+
+export const useInvoiceIdStore = create((set) => ({
+  invoiceId: "",
+  setInvoiceId: (id) => set({ invoiceId: id }),
+}));

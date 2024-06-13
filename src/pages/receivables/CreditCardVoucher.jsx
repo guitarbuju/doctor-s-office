@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getDniData } from "../../api/fetchData";
 import { useForm } from "react-hook-form";
 import PaymentDataGrid from "./PaymentDataGrid";
+import { useInvoiceIdStore } from "../../../store";
 
 const CreditCardVoucher= () => {
 
@@ -9,7 +10,8 @@ const CreditCardVoucher= () => {
   const url = `${BASE_URL}/payments/data`;
   const { register, handleSubmit, reset } = useForm();
   const [foundPatient, setFoundPatient] = useState(null);
- 
+  const selectedInvoice = useInvoiceIdStore((state)=> state.invoiceId);
+   console.log(selectedInvoice);
 
   const onSubmit = async (data) => {
     
@@ -29,7 +31,7 @@ console.log(foundPatient);
       >
         <div className="flex flex-col space-y-4 text-center lg:text-left">
           <h1 className="text-5xl font-bold leading-none text-gray-100">
-            Search Admissions for Payments
+            Search Invoices for Payments
           </h1>
           <div className="flex flex-col justify-start gap-2 text-lg  leading-none text-gray-100">
         <span>Patient:  {foundPatient?.data?.data[0].patient_full_name.toUpperCase()} </span> 
