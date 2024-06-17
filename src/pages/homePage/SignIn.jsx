@@ -9,13 +9,7 @@ import { getItemFromLocalStorage } from "../../api/localStorage";
 const SignIn = () => {
 
 	const [ isOpen, setIsOpen ]=useState(false);
-	const [retrievedItem, setRetrievedItem] = useState(null);
-
-    useEffect(() => {
-        const authData = getItemFromLocalStorage();
-        setRetrievedItem(authData);
-    }, []);
-
+	
   return (
     <div>
 	<div className="custom-shape-divider-top-1717498057">
@@ -37,11 +31,7 @@ const SignIn = () => {
 			<p className="mt-6 mb-8 text-lg sm:mb-12 ml-2">All of your patients information made easy
 				<br  className="hidden md:inline lg:hidden " /><span className="ml-2">Come, on give it a try...</span> </p>
 			<div className="flex flex-col space-y-4 sm:items-center sm:justify-center  sm:space-y-0 sm:space-x-4  gap-2">
-			{retrievedItem ? (
-                    <p>Welcome {retrievedItem.user.username}!!!!</p>
-                ) : (
-                    <p>Please Log in</p>
-                )}
+			
 			<div className="flex justify-center align-middle gap-2">
 				<button className="px-8 py-3 text-lg font-semibold rounded border  dark:bg-violet-600 dark:text-gray-50"
 				onClick={()=>setIsOpen(true)}

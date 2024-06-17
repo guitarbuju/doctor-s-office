@@ -3,7 +3,6 @@ import Home from "./pages/homePage/Home";
 import Doctors from "./pages/partnershipHub/doctors/Doctors";
 import Patients from "./pages/patients/Patients";
 import "./App.css";
-import Welcome from "./pages/homePage/Welcome";
 import PatientSearchByDni from "./pages/patients/PatientSearchByDni";
 import AppoinmentList from "./pages/appointments/search/AppoinmentList.jsx";
 import AppointmentsWrapper from "./pages/appointments/create/AppointmentsWrapper.jsx";
@@ -20,6 +19,7 @@ import InvoiceList from "./pages/invoices/InvoiceList.jsx";
 import DiscountVoucher from "./pages/receivables/DiscountVoucher.jsx";
 import CreditCardVoucher from "./pages/receivables/CreditCardVoucher.jsx";
 import SignIn from "./pages/homePage/SignIn.jsx";
+import Authorization from "./pages/homePage/Authorization";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route index={true} element={<SignIn />} />
-        <Route path='/home' element={<Welcome />} />
+        <Route path='/home' element={<Authorization />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/collaborators" element={<Collaborators/>} />
         <Route path="/collaborators/search" element={<PartnerSearch/>} />
@@ -44,6 +44,7 @@ function App() {
         <Route path="/payments" element={<CreditCardVoucher/>}/>
         <Route path="/administration" element={<SwitchBoard/>} />
         <Route path="/services" element={<ServiceForm />}/>
+        <Route path="/authorization" element={<Authorization />}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
       

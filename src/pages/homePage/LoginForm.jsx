@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { Dialog } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import { postPersonData } from "../../api/fetchData";
-import { getItemFromLocalStorage, saveItemToLocalStorage } from "../../api/localStorage";
+import { saveItemToLocalStorage } from "../../api/localStorage";
+import { useNavigate } from "react-router";
 
 const LoginForm = ({ isOpen, setIsOpen }) => {
   const [showSpinner, setShowSpinner] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const navigate = useNavigate();
   const url = `${import.meta.env.VITE_BASE_URL}/auth/login`;
 
   //////////////REACT HOOK FORM HOOKS
@@ -15,7 +17,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
     handleSubmit,
     // formState: { errors },
     watch,
-    // reset,
+   
   } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
@@ -26,6 +28,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
       timer = setTimeout(() => {
         setShowSpinner(false);
         setClicked(true);
+        setIsOpen(false);
       }, 1000);
     }
 
@@ -39,17 +42,13 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
       const signInToApi = await postPersonData(url, data);
       const { user, token } = signInToApi;
       saveItemToLocalStorage(user, token);
+      setShowSpinner(true);
+      setClicked(true);
+      navigate('/authorization')
       console.log(signInToApi);
     } catch (error) {
       console.error(error);
     }
-  };
-
- 
-
-  const handleClose = () => {
-    setIsOpen(false);
-    setClicked(false);
   };
 
   return (
@@ -60,10 +59,18 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
     >
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="fixed inset-0 flex w-screen items-center justify-center p-10">
-        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all h-[400px]">
+        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ">
           <span>LOGIN FORM</span>
+          <Dialog.Description className="flex justify-center align-middle">
+                {showSpinner ? (
+                  <span className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-medBlue"></span>
+                ) : (
+                  <span></span>
+                )}
+              </Dialog.Description>
           <Dialog.Title className={`mt-8 ${clicked ? "hidden" : ""}`}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 -mt-6">
+        {!clicked ? 
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 -mt-6 h-[300px]">
               <div className="space-y-4">
                 <label
                   htmlFor="username"
@@ -115,6 +122,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
                   />
                 </div>
               </div>
+             
               <div className=" flex gap-2 justify-center align-middle">
                 <button
                   className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-2"
@@ -126,17 +134,13 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
                   className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-2"
                   type="reset"
                 >
-                  reset
+                  Reset
                 </button>
               </div>
             </form>
-          </Dialog.Title>
-          <button
-            className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-2"
-            onClick={() => handleClose()}
-          >
-            Close
-          </button>
+        :''}
+            
+          </Dialog.Title>      
         </Dialog.Panel>
       </div>
     </Dialog>
