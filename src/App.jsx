@@ -19,13 +19,15 @@ import InputChargeForm from "./pages/invoices/InputChargeForm.jsx";
 import InvoiceList from "./pages/invoices/InvoiceList.jsx";
 import DiscountVoucher from "./pages/receivables/DiscountVoucher.jsx";
 import CreditCardVoucher from "./pages/receivables/CreditCardVoucher.jsx";
+import SignIn from "./pages/homePage/SignIn.jsx";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route index={true} element={<Welcome />} />
+        <Route index={true} element={<SignIn />} />
+        <Route path='/home' element={<Welcome />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/collaborators" element={<Collaborators/>} />
         <Route path="/collaborators/search" element={<PartnerSearch/>} />

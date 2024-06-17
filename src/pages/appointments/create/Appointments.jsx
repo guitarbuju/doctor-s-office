@@ -141,7 +141,7 @@ const Appointments = () => {
                 ""
               )}
               <Link
-                to="/"
+                to="/home"
                 className="px-8 py-3 font-semibold rounded-md bg-transparent border-2 border-white"
               >
                 Home
