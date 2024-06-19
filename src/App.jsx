@@ -21,10 +21,13 @@ import CreditCardVoucher from "./pages/receivables/CreditCardVoucher.jsx";
 import SignIn from "./pages/homePage/SignIn.jsx";
 import Authorization from "./pages/homePage/Authorization";
 import ProtectedRoute from "./pages/homePage/ProtectedRoute.jsx";
+import Header from "./api/Header.jsx";
 
 function App() {
   return (
+    
     <>
+    <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route index={true} element={<SignIn />} />
