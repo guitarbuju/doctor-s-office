@@ -218,7 +218,7 @@ const Patients = () => {
             <Link
               type="button"
               className="px-8 py-3 font-semibold rounded border"
-              to="/"
+              to="/home"
             >
               Home{" "}
             </Link>
