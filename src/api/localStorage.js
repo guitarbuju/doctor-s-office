@@ -10,3 +10,7 @@ export const getItemFromLocalStorage = () => {
     const retrievedItem = localStorage.getItem('authData');
     return retrievedItem ? JSON.parse(retrievedItem) : null;
   };
+
+  export const removeItemFromLocalStorage = () => {
+    localStorage.removeItem('authData');
+  };

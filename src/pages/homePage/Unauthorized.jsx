@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import Doctor from '../../assets/Doctor-PNG-Images.png'
 
 const Welcome = () => {
   return (
@@ -12,7 +12,7 @@ const Welcome = () => {
         <section className="bg-zinc-50">
 	<div className="container flex flex-col justify-center  p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
 		<div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-			<img src="https://www.pngall.com/wp-content/uploads/2018/05/Doctor-PNG-Images.png" alt="" className="object-contain h-72 sm:h-80 lg:h-[700px] z-10" />
+			<img src={Doctor} alt="" className="object-contain h-72 sm:h-80 lg:h-[700px] z-10" />
 			
 		</div>
 		<div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">

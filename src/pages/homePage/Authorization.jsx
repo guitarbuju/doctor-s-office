@@ -3,16 +3,16 @@ import Unauthorized from "./Unauthorized";
 import Welcome from "./Welcome";
 import { getItemFromLocalStorage } from "../../api/localStorage";
 
-const State = () => {
+const Authorization = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    const authToken = getItemFromLocalStorage("authData");
-    console.log(authToken);
-    authToken && setIsAuthorized(true);
+    const authData = getItemFromLocalStorage();
+    if (authData && authData.token) {
+      setIsAuthorized(true);
+    }
   }, []);
-  console.log(isAuthorized);
-
+  
   return isAuthorized ? (
     <div>
       <Welcome />
@@ -22,4 +22,4 @@ const State = () => {
   );
 };
 
-export default State;
+export default Authorization;

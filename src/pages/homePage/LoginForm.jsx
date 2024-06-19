@@ -65,7 +65,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
                 {showSpinner ? (
                   <span className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-medBlue"></span>
                 ) : (
-                  <span></span>
+                  ''
                 )}
               </Dialog.Description>
           <Dialog.Title className={`mt-8 ${clicked ? "hidden" : ""}`}>
