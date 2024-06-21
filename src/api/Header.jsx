@@ -36,20 +36,20 @@ function Header() {
   };
 
   return (
-    <div className="h-12 ">
+    <div className="h-6 -mt-5">
      
       <div className="flex gap-2 justify-end ">
       <Link to="/home">
         <img src={Home} className="w-5 z-50" />
       </Link>
         <img src={User} className="w-5 h-5 z-50 " />
-        <div className="flex  flex-col  ">
+        <div className="flex  justify-around ">
           <span className="text-xs z-50 font-normal leading-none mt-1 ">
-            User: {username}
+            {username}
           </span>
           {logoutButton && (
             <button
-              className="z-50 w-full  hover:bg-stone-100 hover:text-md hover:transition ease-in-out delay-100 text-xs font-medium py-1 rounded-lg focus:outline-none underline"
+              className="z-50 w-20  hover:bg-stone-100 hover:text-md hover:transition ease-in-out delay-100 text-xs font-medium py-1 rounded-lg focus:outline-none underline"
               onClick={() => handleLogout()}
             >
               Log Out

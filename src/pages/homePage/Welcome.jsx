@@ -2,25 +2,25 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   getItemFromLocalStorage,
-  removeItemFromLocalStorage,
+  // removeItemFromLocalStorage,
 } from "../../api/localStorage";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import Doctor from './../../assets/Doctor-PNG-Images.png'
 
 const Welcome = () => {
   const [retrievedItem, setRetrievedItem] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
   useEffect(() => {
     const authData = getItemFromLocalStorage();
     setRetrievedItem(authData);
   }, []);
 
-  const handleLogout = () => {
-    removeItemFromLocalStorage();
-    setRetrievedItem(null); // Clear the retrieved item from the state
-    navigate("/");
-  };
+  // const handleLogout = () => {
+  //   removeItemFromLocalStorage();
+  //   setRetrievedItem(null); // Clear the retrieved item from the state
+  //   navigate("/");
+  // };
 
   return (
     <div>
@@ -48,7 +48,7 @@ const Welcome = () => {
           </div>
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             {retrievedItem ? (
-              <p className="ml-2 text-medBlue text-2xl">
+              <p className="ml-2 text-medBlue text-4xl">
                 Welcome back {retrievedItem.user.username}!!!!
               </p>
             ) : (
@@ -62,29 +62,24 @@ const Welcome = () => {
               <div className="flex justify-center align-middle gap-2">
                 <Link
                   to="/patients"
-                  className="px-8 py-3 text-lg font-semibold rounded border  dark:bg-violet-600 dark:text-gray-50"
+                  className="px-8 py-3 text-md font-light rounded border  dark:bg-violet-600 dark:text-gray-50"
                 >
                   Create Patient
                 </Link>
                 <Link
                   to="/patients/dni"
-                  className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800"
+                  className="px-8 py-3 text-md font-light border rounded dark:border-gray-800"
                 >
                   Search Patient
                 </Link>
               </div>
               <Link
                 to="/administration"
-                className=" w-[385px]  text-center px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800"
+                className=" w-[385px]  text-center px-8 py-3 text-md font-light border rounded dark:border-gray-800"
               >
-                Administration
+                Back Office
               </Link>
-              <button
-                className=" w-[385px]  text-center px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800"
-                onClick={() => handleLogout()}
-              >
-                Log Out
-              </button>
+             
             </div>
           </div>
         </div>
