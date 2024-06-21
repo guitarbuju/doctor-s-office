@@ -29,12 +29,12 @@ const SignIn = () => {
 			<h1 className="text-10xl font-bold leading-none sm:text-6xl text-medBlue">EASYMED
 				<span className="ml-2 text-black">Patient Management System</span>
 			</h1>
-			<p className="mt-6 mb-8 text-lg sm:mb-12 ml-2">All of your patients information made easy
-				<br  className="hidden md:inline lg:hidden " /><span className="ml-2">Come, on give it a try...</span> </p>
+			<p className="mt-6 mb-8 text-lg sm:mb-12 ml-2 text-gray-900 font-light">All of your patients information made easy
+				<br  className="hidden md:inline lg:hidden " /><span className="ml-2 text-gray-900">Come, on give it a try...</span> </p>
 			<div className="flex flex-col space-y-4 sm:items-center sm:justify-center  sm:space-y-0 sm:space-x-4  gap-2">
 			
 			<div className="flex justify-center align-middle gap-2">
-				<button className="px-8 py-3 text-lg font-semibold rounded border  dark:bg-violet-600 dark:text-gray-50"
+				<button className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
 				onClick={()=>setIsOpen(true)}
 				>Login</button>
 			</div>

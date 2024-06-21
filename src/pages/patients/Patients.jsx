@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { usePatientsInfoStore } from "../../../store";
 
-
 const Patients = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/patients`;
   const { register, handleSubmit, reset } = useForm();
@@ -49,17 +48,15 @@ const Patients = () => {
 
   return (
     <>
-      <section className="flex justify-around gap-4">
+      <section className="flex justify-around gap-4  text-gray-900 mt-10">
         <article className="flex flex-col items-center">
-          <span className="block mb-2 ">EASYMED Patient Management System</span>
-          <h1 className="text-5xl font-extrabold ">
-            Patient&apos;s <br /> Register Form
+          <h1 className="text-4xl font-semibold leading-tight ">
+            Patient&apos;s Register Form
           </h1>
           <img
-         
             src="https://pngimg.com/uploads/doctor/doctor_PNG16003.png"
             alt=""
-            className="object-cover w-[350px] h-[450px] rounded-md xl:col-span-3 mt-2"
+            className="object-cover w-[350px] h-[500px] rounded-md xl:col-span-3 mt-2"
           />
         </article>
         <form
@@ -76,9 +73,11 @@ const Patients = () => {
               )}
               <div className="text-xs text-[#07074D] flex flex-col rounded-md ">
                 <div className="flex gap-2 align-middle justify-around text-xl">
-                  <p>{patientCreated.data?.[0]?.first_name} {patientCreated.data?.[0]?.last_name}</p>
+                  <p>
+                    {patientCreated.data?.[0]?.first_name}{" "}
+                    {patientCreated.data?.[0]?.last_name}
+                  </p>
                   <Link
-                    
                     className={`font-semibold text-sm text-[#6A64F1] underline ${
                       Object.keys(patientCreated).length === 0
                         ? "hidden"
@@ -139,7 +138,56 @@ const Patients = () => {
                   {...register("email", { required: true })}
                 />
               </div>
-              <div className="flex flex-col">
+             
+              <div className="flex gap-2">
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="phone"
+                    className="text-base font-medium text-[#07074D]"
+                  >
+                    Phone
+                  </label>
+                  <input
+                    id="phone"
+                    type="text"
+                    placeholder="Phone Number"
+                    className="w-72 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    {...register("phone", { required: true })}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="birth_date"
+                    className="text-base font-medium text-[#07074D]"
+                  >
+                    Birth Date
+                  </label>
+                  <input
+                    id="birth_date"
+                    type="date"
+                    placeholder="Birth Date"
+                    className="w-72 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    {...register("birth_date", { required: true })}
+                  />
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="dni"
+                    className="text-base font-medium text-[#07074D]"
+                  >
+                    Dni
+                  </label>
+                  <input
+                    id="dni"
+                    type="text"
+                    placeholder="DNI"
+                    className="w-72 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    {...register("dni", { required: true })}
+                  />
+                </div>
+                <div className="flex flex-col">
                 <label
                   htmlFor="zip_code"
                   className="text-base font-medium text-[#07074D]"
@@ -150,79 +198,27 @@ const Patients = () => {
                   id="zip_code"
                   type="text"
                   placeholder="Zip Code"
-                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  className="w-72 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   {...register("zip_code", { required: true })}
                 />
               </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="phone"
-                  className="text-base font-medium text-[#07074D]"
-                >
-                  Phone
-                </label>
-                <input
-                  id="phone"
-                  type="text"
-                  placeholder="Phone Number"
-                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                  {...register("phone", { required: true })}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="birth_date"
-                  className="text-base font-medium text-[#07074D]"
-                >
-                  Birth Date
-                </label>
-                <input
-                  id="birth_date"
-                  type="date"
-                  placeholder="Birth Date"
-                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                  {...register("birth_date", { required: true })}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="dni"
-                  className="text-base font-medium text-[#07074D]"
-                >
-                  Dni
-                </label>
-                <input
-                  id="dni"
-                  type="text"
-                  placeholder="DNI"
-                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                  {...register("dni", { required: true })}
-                />
               </div>
             </div>
           </fieldset>
-          <div className="flex gap-2 justify-center mt-2 ">
+          <div className="flex justify-center mt-3  gap-1">
             <button
               type="submit"
-              className="hover:shadow-htmlForm w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
+              className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
             >
               Create Patient
             </button>
 
             <button
               type="reset"
-              className="px-8 py-3 font-semibold rounded border "
+              className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
             >
               Reset{" "}
             </button>
-            <Link
-              type="button"
-              className="px-8 py-3 font-semibold rounded border"
-              to="/home"
-            >
-              Home{" "}
-            </Link>
-
           </div>
         </form>
       </section>

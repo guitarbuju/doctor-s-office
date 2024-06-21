@@ -34,7 +34,7 @@ const Collaborators = () => {
         recordedInfo={recordedInfo}
       />
       <article className="flex flex-col items-center mt-10">
-        <span className="block mb-2 ">EASYMED Patient Management System</span>
+       
         <h1 className="text-5xl font-extrabold ">
           Collaborator&apos;s <br /> Register Form
         </h1>

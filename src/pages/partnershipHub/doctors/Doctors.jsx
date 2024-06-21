@@ -33,10 +33,9 @@ const Doctors = () => {
         setIsOpen={setIsOpen}
         recordedInfo={recordedInfo}
       />
-      <article className="flex flex-col items-center mt-10">
-        <span className="block mb-2 ">EASYMED Patient Management System</span>
-        <h1 className="text-5xl font-extrabold ">
-          Doctor&apos;s <br /> Register Form
+      <article className="flex flex-col items-center mt-10 text-gray-900">
+        <h1 className="text-4xl font-semibold leading-tight ">
+          Doctor&apos;s  Register Form
         </h1>
         <img
           src="https://www.vinci.com/vinci/actualites-v3.nsf/B031ABB656909551C1257A7900424A73/$file/Hopital_Varsovie-hd.jpg"

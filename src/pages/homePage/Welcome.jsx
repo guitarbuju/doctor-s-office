@@ -5,12 +5,12 @@ import {
   // removeItemFromLocalStorage,
 } from "../../api/localStorage";
 // import { useNavigate } from "react-router";
-import Doctor from './../../assets/Doctor-PNG-Images.png'
+import Doctor from "./../../assets/Doctor-PNG-Images.png";
 
 const Welcome = () => {
   const [retrievedItem, setRetrievedItem] = useState(null);
   // const navigate = useNavigate();
-  
+
   useEffect(() => {
     const authData = getItemFromLocalStorage();
     setRetrievedItem(authData);
@@ -62,24 +62,23 @@ const Welcome = () => {
               <div className="flex justify-center align-middle gap-2">
                 <Link
                   to="/patients"
-                  className="px-8 py-3 text-md font-light rounded border  dark:bg-violet-600 dark:text-gray-50"
+                  className=" w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
                 >
                   Create Patient
                 </Link>
                 <Link
                   to="/patients/dni"
-                  className="px-8 py-3 text-md font-light border rounded dark:border-gray-800"
+                  className=" w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
                 >
                   Search Patient
                 </Link>
               </div>
               <Link
                 to="/administration"
-                className=" w-[385px]  text-center px-8 py-3 text-md font-light border rounded dark:border-gray-800"
+                className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
               >
                 Back Office
               </Link>
-             
             </div>
           </div>
         </div>

@@ -36,25 +36,30 @@ function Header() {
   };
 
   return (
-    <div className="h-6 -mt-5">
-     
-      <div className="flex gap-2 justify-end ">
-      <Link to="/home">
-        <img src={Home} className="w-5 z-50" />
-      </Link>
-        <img src={User} className="w-5 h-5 z-50 " />
-        <div className="flex  justify-around ">
-          <span className="text-xs z-50 font-normal leading-none mt-1 ">
-            {username}
-          </span>
-          {logoutButton && (
-            <button
-              className="z-50 w-20  hover:bg-stone-100 hover:text-md hover:transition ease-in-out delay-100 text-xs font-medium py-1 rounded-lg focus:outline-none underline"
-              onClick={() => handleLogout()}
-            >
-              Log Out
-            </button>
-          )}
+    <div className="h-6 -mt-5 text-gray-900">
+      <div className="flex gap-2 justify-between ">
+      <h1 className="z-50 font-normal leading-none mt-1 ">
+       <span className="text-md font-medium">EASYMED</span> 
+        <span className="font-light ml-2 text-xs">Patient Management System</span>
+      </h1>
+        <div className="flex gap-2 mt-2">
+          <Link to="/home">
+            <img src={Home} className="w-5 z-50" />
+          </Link>
+          <img src={User} className="w-5 h-5 z-50 " />
+          <div className="flex  justify-around ">
+            <span className="text-xs z-50 font-normal leading-none mt-2 ">
+              {username}
+            </span>
+            {logoutButton && (
+              <button
+                className="z-50 w-20  hover:bg-stone-100 hover:text-md hover:transition ease-in-out delay-100 text-xs font-normal leading-none  py-1 rounded-lg focus:outline-none underline"
+                onClick={() => handleLogout()}
+              >
+                Log Out
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
