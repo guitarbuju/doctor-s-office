@@ -36,16 +36,16 @@ const PatientSearchByDni = () => {
   }
 
   return (
-    <div className="py-6 bg-medBlue">
+    <div className="py-6 ">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row"
       >
         <div className="flex flex-col space-y-4 text-center lg:text-left">
-          <h1 className="text-5xl font-bold leading-none text-gray-100">
+          <h1 className="text-5xl font-bold leading-none text-gray-900">
             Input Patient`s DNI for Search
           </h1>
-          <p className="text-lg">
+          <p className="text-lg text-gray-900">
             {!error ? (
               "Please insert Patient's DNI card number"
             ) : (
@@ -67,7 +67,7 @@ const PatientSearchByDni = () => {
               />
               <button
                 type="submit"
-                className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 text-gray-100 bg-red-400"
+                className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 text-gray-100 bg-yellow-400"
               >
                 Search
               </button>
@@ -86,7 +86,8 @@ const PatientSearchByDni = () => {
       <div className="flex gap-2 justify-center align-middle mt-4">
         <Link
           type="button"
-          className="px-8 py-3 font-semibold rounded border"
+              className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
+          
           to="/home"
         >
           Home{" "}
@@ -94,7 +95,7 @@ const PatientSearchByDni = () => {
         {foundPatient && !error ? (
           <Link
             type="button"
-            className="px-8 py-3 font-semibold rounded border text-gray-100 bg-red-400"
+              className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
             to="/appointments"
           >
             Create Appointment?{" "}

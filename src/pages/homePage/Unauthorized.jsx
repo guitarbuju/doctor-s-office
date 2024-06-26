@@ -23,9 +23,9 @@ const Welcome = () => {
 				<br  className="hidden md:inline lg:hidden " /><span className="ml-2">Come, on give it a try...</span> </p>
 			<div className="flex flex-col space-y-4 sm:items-center sm:justify-center  sm:space-y-0 sm:space-x-4  gap-2">
 			<div className="flex justify-center align-middle gap-2">
-			<h1 className="text-10xl font-bold leading-none sm:text-6xl text-orange-400">UNAUTHORIZED!!!!!!</h1>
+			<h1 className="text-10xl font-bold leading-none sm:text-6xl text-yellow-400 -mt-8 mb-4">UNAUTHORIZED!!!!!!</h1>
 			</div>
-				<Link to='/' className=" w-[385px]  text-center px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800">Home</Link>
+				<Link to='/' className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center">Home</Link>
 			</div>
 		</div>
 	</div>

@@ -67,10 +67,10 @@ const Appointments = () => {
 
   return (
     <>
-      <section className="py-6 bg-medBlue">
+      <section className="py-6 text-gray-900">
         <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
           <div className="flex flex-col justify-center lg:text-left">
-            <p className="mb-1 text-sm font-medium tracking-widest uppercase text-gray-100">
+            <p className="mb-1 text-sm font-medium tracking-widest uppercase">
               {isButtonGroupVisible
                 ? "Create an Appoinment for:"
                 : "Appointment created "}
@@ -78,7 +78,7 @@ const Appointments = () => {
                 {patientsInfo.name} {patientsInfo.lastName}
               </span>{" "}
             </p>
-            <h1 className="text-5xl font-bold leading-none text-gray-100">
+            <h1 className="text-5xl font-bold leading-none ">
               {isButtonGroupVisible ? (
                 "Enter your Dr's. info and date for your visit"
               ) : (
@@ -129,11 +129,11 @@ const Appointments = () => {
                 <div className="flex flex-col gap-2 ">
                   <button
                     type="submit"
-                    className="px-8 py-3 font-semibold rounded-md bg-red-400"
+                    className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
                   >
                     Create{" "}
                   </button>
-                  <button className="px-8 py-3 font-semibold rounded-md bg-amber-400">
+                  <button className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center">
                     Reset
                   </button>
                 </div>
@@ -142,20 +142,20 @@ const Appointments = () => {
               )}
               <Link
                 to="/home"
-                className="px-8 py-3 font-semibold rounded-md bg-transparent border-2 border-white"
+                className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
               >
                 Home
               </Link>
               <Link
                 to="/appointments/list"
-                className="px-8 py-3 font-semibold rounded-md bg-transparent border-2 border-white"
+                className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
               >
                 Appointments
               </Link>
             </div>
           </form>
         </div>{" "}
-        <p className="mb-1 text-sm   text-gray-100">
+        <p className="mb-1 text-sm   text-gray-900">
           {postToApiResult.message}
         </p>
       </section>
