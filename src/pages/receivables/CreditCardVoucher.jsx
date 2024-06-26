@@ -24,16 +24,19 @@ console.log(foundPatient);
 
 
   return (
-    <div className="py-6 bg-medBlue">
+    <div className="py-6 ">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row"
       >
         <div className="flex flex-col space-y-4 text-center lg:text-left">
-          <h1 className="text-5xl font-bold leading-none text-gray-100">
+          <h1 className="text-5xl font-bold leading-none text-gray-900">
             Search Invoices for Payments
           </h1>
-          <div className="flex flex-col justify-start gap-2 text-lg  leading-none text-gray-100">
+          <p className=" justify-start gap-2 text-lg  leading-none text-gray-900">
+            Please fill up patients DNI for search
+          </p>
+          <div className="flex flex-col justify-start gap-2 text-lg  leading-none text-gray-900">
         <span>Patient:  {foundPatient?.data?.data[0].patient_full_name.toUpperCase()} </span> 
         <span>Dni:  {foundPatient?.data?.data[0].dni}</span>
           </div>
@@ -50,7 +53,7 @@ console.log(foundPatient);
               />
               <button
                 type="submit"
-                className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 text-gray-100 bg-red-400"
+                className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 text-gray-100 bg-yellow-400"
               >
                 Search
               </button>

@@ -104,15 +104,25 @@ const PatientSearchByDni = () => {
           ""
         )}
         {error && (
+          <>
           <Link
             type="button"
-            className="px-8 py-3 font-semibold rounded border bg-red-400 text-gray-100"
+             className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
             to="/patients"
           >
             Create Patient ?{" "}
           </Link>
+        </>
         )}
+        <Link
+            type="button"
+               className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
+            to="/admissions"
+          >
+            Admissions{" "}
+          </Link>
       </div>
+      
     </div>
   );
 };

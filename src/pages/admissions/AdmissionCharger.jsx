@@ -8,7 +8,7 @@ const AdmissionCharger = () => {
 
   return (
     <div>
-    <section className="py-6 bg-medBlue flex justify-around">
+    <section className="py-6 text-gray-900 flex justify-around">
     <img 
     src='https://png.pngtree.com/thumb_back/fh260/png-vector/20200530/ourmid/pngtree-doctor-office-png-image_2215307.jpg'/>
         <div className="container mx-auto flex flex-col justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:space-x-12 lg:justify-between lg:flex-row">

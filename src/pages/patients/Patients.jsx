@@ -219,6 +219,7 @@ const Patients = () => {
             >
               Reset{" "}
             </button>
+            
           </div>
         </form>
       </section>

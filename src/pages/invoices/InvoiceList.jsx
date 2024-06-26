@@ -18,7 +18,7 @@ const InvoiceList = () => {
 
 const getCurrentMonthRange = () => {
   const start = new Date(now.getFullYear(), now.getMonth(), 1);
-  const end = new Date()
+  const end = new Date(now.getFullYear(), now.getMonth() + 1, 0);
   return {
     from: formatDateYearFirst(start),
     to: formatDateYearFirst(end),
@@ -199,7 +199,7 @@ const getCurrentMonthRange = () => {
                         
                         <Link
                           type="button"
-                          className="h-6 ml-2 mt-1 bg-orange-400 hover:bg-red-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+                          className="text-center pt-1 h-6 ml-2 mt-1 bg-medBlue hover:bg-red-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
                           onClick={() => {
                             setInvoiceIdToStore(invoice.invoice_id);
                           }}
