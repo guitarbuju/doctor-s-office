@@ -32,10 +32,8 @@ const AdmissionsTable = () => {
   return (
     <div>
       {admittedList?.data?.length > 0 ? (
-        <div className="container p-2 mx-auto sm:p-4 text-gray-900">
-          <h2 className="mb-4 text-2xl font-semibold leading-tight">
-            Pending Admissions
-          </h2>
+        <div className="container p-2 mx-auto sm:p-4 text-gray-900 -mt-20">
+         
           <div className="overflow-x-auto">
             <table className="w-full p-6 text-xs text-left whitespace-nowrap">
               <thead>

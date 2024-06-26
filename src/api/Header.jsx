@@ -36,7 +36,7 @@ function Header() {
   };
 
   return (
-    <div className="h-6 -mt-5 text-gray-900">
+    <div className="h-6 -mt-5 text-gray-900 ">
       <div className="flex gap-2 justify-between ">
       <h1 className="z-50 font-normal leading-none mt-1 ">
        <span className="text-md font-medium">EASYMED</span> 

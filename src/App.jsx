@@ -18,10 +18,11 @@ import InputChargeForm from "./pages/invoices/InputChargeForm.jsx";
 import InvoiceList from "./pages/invoices/InvoiceList.jsx";
 import DiscountVoucher from "./pages/receivables/DiscountVoucher.jsx";
 import CreditCardVoucher from "./pages/receivables/CreditCardVoucher.jsx";
-import SignIn from "./pages/homePage/SignIn.jsx";
+// import SignIn from "./pages/homePage/SignIn.jsx";
 import Authorization from "./pages/homePage/Authorization";
 import ProtectedRoute from "./pages/homePage/ProtectedRoute.jsx";
 import Header from "./api/Header.jsx";
+import Loggedin from "./pages/homePage/Loggedin.jsx";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
     <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route index={true} element={<SignIn />} />
+        <Route index={true} element={<Loggedin />} />
         <Route path="/authorization" element={<Authorization />} />
 
         <Route element={<ProtectedRoute />}>
