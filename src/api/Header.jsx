@@ -6,6 +6,8 @@ import {
 } from "../api/localStorage";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import Home from "./../assets/icons8-home-50.png";
+import DropDown from "./DropDown";
+
 
 function Header() {
   const navigate = useNavigate();
@@ -59,9 +61,12 @@ function Header() {
                 Log Out
               </button>
             )}
+            
           </div>
+         <DropDown/>
         </div>
       </div>
+      
     </div>
   );
 }
