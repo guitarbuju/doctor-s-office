@@ -4,10 +4,12 @@ import { formatDate, monthNames , formatDateYearFirst} from "../../api/formatDat
 import { arrangeData } from "../../api/groupedData";
 import PDFInvoice from "./pdf/PDFInvoice";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { styles } from "./pdf/styles.js";
 import AnullModal from "./AnullModal.jsx";
 import { useInvoiceIdStore } from "../../../store.js";
 import { Link } from "react-router-dom";
+import { AnullmentIcon } from "../../assets/Icons/AnullmentIcon.jsx";
+import { PaymentIcon } from "../../assets/Icons/PaymentIcon.jsx";
+import { DownloadIcon } from "../../assets/Icons/DownloadIcon.jsx";
 
 const InvoiceList = () => {
 
@@ -160,53 +162,52 @@ const getCurrentMonthRange = () => {
                     </td>
 
                     {status === "annulled" ? (
-                      <td className="px-3 py-2 flex justify-center align-middle border-x border-y bg-zinc-100">
+                      <td className="px-3 py-2 flex justify-center align-middle border-x border-y bg-zinc-100 ">
                         <PDFDownloadLink
-                          style={styles.button}
                           document={
                             <PDFInvoice getInvoiceId={invoice.invoice_id} />
                           }
                           fileName="invoice.pdf"
                         >
                           {({ loading }) =>
-                            loading ? "Loading document..." : "Download"
+                            loading ? "Loading document..." :  <DownloadIcon/>
                           }
                         </PDFDownloadLink>
                       </td>
                     ) : (
-                      <td className="flex flex-col border-x border-y">
+                      <td className="px-3 py-2 flex justify-center align-middle border-x border-y bg-zinc-100 gap-2 ">
                         <PDFDownloadLink
                           document={
                             <PDFInvoice getInvoiceId={invoice.invoice_id} />
                           }
                           fileName="invoice.pdf"
-                          style={styles.button}
+                          
                         >
                           {({ loading }) =>
-                            loading ? "Loading document..." : "Download"
+                            loading ? "Loading document..." : <DownloadIcon/>
                           }
                         </PDFDownloadLink>
                         <button
                           type="button"
-                          className="h-6 ml-2 mt-1 bg-red-400 hover:bg-red-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+                          className="h-6  text-center text-gray-900 text-xs"
                           onClick={() => {
                             setGetInvoiceId(invoice.invoice_id);
                             setIsOpen(true);
                           }}
                         >
-                          Anull Invoice
+                          <AnullmentIcon/>
                         </button>
                         
-                        <Link
+                       { status === 'pending' && <Link
                           type="button"
-                          className="text-center pt-1 h-6 ml-2 mt-1 bg-medBlue hover:bg-red-600 text-gray-100 px-2  rounded transition duration-150 text-xs"
+                       className="h-6  text-center text-gray-900 text-xs"
                           onClick={() => {
                             setInvoiceIdToStore(invoice.invoice_id);
                           }}
                           to='/payments'
                         >
-                         Pay Invoice
-                        </Link>
+                         <PaymentIcon/>
+                        </Link>}
                       </td>
                     )}
                   </tr>
