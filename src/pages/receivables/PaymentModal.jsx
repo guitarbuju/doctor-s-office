@@ -1,5 +1,6 @@
 import { Dialog } from "@headlessui/react";
 import CreditCardFormData from "./CreditCardFormData";
+import { useNavigate } from "react-router-dom";
 
 
 function PaymentModal({
@@ -11,10 +12,12 @@ function PaymentModal({
   clickedAdmissionId,
   outputMessage,
 }) {
+
+  const navigate = useNavigate();
   return (
     <Dialog
       open={isOpen}
-      onClose={() => setIsOpen(false)}
+      onClose={() => {setIsOpen(false);navigate('/invoices/list')}}
       className="relative z-50 "
     >
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />

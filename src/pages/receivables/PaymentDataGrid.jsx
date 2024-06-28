@@ -3,6 +3,7 @@ import { postPersonData } from "../../api/fetchData";
 import PaymentModal from "./PaymentModal";
 import { formatDate } from "../../api/formatDate";
 
+
 const PaymentDataGrid = ({ foundPatient }) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/payments/vouchers`;
@@ -56,7 +57,7 @@ const PaymentDataGrid = ({ foundPatient }) => {
     <div className="bg-zinc-50">
       <div className="container p-2 mx-auto sm:p-4 text-gray-900">
         <h2 className="mb-4 text-2xl font-semibold leading-tight text-gray-900">
-          Found Admissions for Patients
+         Credit Card Payment
         </h2>
         <div className="overflow-x-auto">
           {foundPatient?.status !== 200 ? (
@@ -131,6 +132,7 @@ const PaymentDataGrid = ({ foundPatient }) => {
 
                     <td className="px-3 py-2  bg-zinc-50">
                       {admission.net_amount !== 0 ? (
+                        <div className="flex gap-1 justify-center align-middle">
                         <button
                           type="button"
                           className="h-6 ml-2 mt-1 bg-amber-400 hover:bg-amber-600 text-gray-100 px-2 rounded transition duration-150 text-xs"
@@ -140,8 +142,9 @@ const PaymentDataGrid = ({ foundPatient }) => {
                             setBalance(admission.net_amount);
                           }}
                         >
-                          Pay this bill
+                          Pay this Bill
                         </button>
+                       </div>
                       ) : (
                         <span>Paid</span>
                       )}
