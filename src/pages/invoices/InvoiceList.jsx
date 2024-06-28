@@ -204,7 +204,7 @@ const getCurrentMonthRange = () => {
                           onClick={() => {
                             setInvoiceIdToStore(invoice.invoice_id);
                           }}
-                          to='/payments'
+                          to='/direct_payments'
                         >
                          <PaymentIcon/>
                         </Link>}

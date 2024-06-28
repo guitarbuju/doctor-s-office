@@ -18,7 +18,7 @@ import InputChargeForm from "./pages/invoices/InputChargeForm.jsx";
 import InvoiceList from "./pages/invoices/InvoiceList.jsx";
 import DiscountVoucher from "./pages/receivables/DiscountVoucher.jsx";
 import CreditCardVoucher from "./pages/receivables/CreditCardVoucher.jsx";
-// import SignIn from "./pages/homePage/SignIn.jsx";
+import DirectPaymentVoucher from "./pages/receivables/DirectPaymentVoucher.jsx"
 import Authorization from "./pages/homePage/Authorization";
 import ProtectedRoute from "./pages/homePage/ProtectedRoute.jsx";
 import Header from "./api/Header.jsx";
@@ -50,6 +50,7 @@ function App() {
           <Route path="/invoices/list" element={<InvoiceList />} />
           <Route path="/discounts" element={<DiscountVoucher />} />
           <Route path="/payments" element={<CreditCardVoucher />} />
+          <Route path="/direct_payments" element={<DirectPaymentVoucher />} />
           <Route path="/administration" element={<SwitchBoard />} />
           <Route path="/services" element={<ServiceForm />} />
         </Route>
