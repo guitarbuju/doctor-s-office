@@ -23,6 +23,7 @@ import Authorization from "./pages/homePage/Authorization";
 import ProtectedRoute from "./pages/homePage/ProtectedRoute.jsx";
 import Header from "./api/Header.jsx";
 import Loggedin from "./pages/homePage/Loggedin.jsx";
+import Footer from "./api/Footer.jsx";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer/>
     </>
   );
 }
