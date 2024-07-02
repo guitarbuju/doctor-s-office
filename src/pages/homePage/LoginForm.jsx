@@ -59,7 +59,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
     >
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="fixed inset-0 flex w-screen items-center justify-center p-10">
-        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ">
+        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
           <span>LOGIN FORM</span>
           <Dialog.Description className="flex justify-center align-middle">
                 {showSpinner ? (
@@ -71,7 +71,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
           <Dialog.Title className={`mt-8 ${clicked ? "hidden" : ""}`}>
         {!clicked ? 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 -mt-6 h-[300px]">
-              <div className="space-y-4">
+              {/* <div className="space-y-4">
                 <label
                   htmlFor="username"
                   className=" text-sm flex justify-start"
@@ -86,7 +86,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
                   placeholder="your User Name..."
                   className="w-full px-3 py-2 text-gray-600 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
                 />
-              </div>
+              </div> */}
 
               <div className="space-y-4">
                 <div>
