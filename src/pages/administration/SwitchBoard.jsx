@@ -36,7 +36,7 @@ const SwitchBoard = () => {
               to="/collaborators/search"
               className="w-60 px-8 py-3 text-md font-light rounded border-2 border-zinc-100 outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
             >
-              Search Collaborator
+              <span className="font-semibold">Search</span> Collaborator
             </Link>
           </div>
         </div>
