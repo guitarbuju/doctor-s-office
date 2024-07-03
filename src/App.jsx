@@ -24,6 +24,8 @@ import ProtectedRoute from "./pages/homePage/ProtectedRoute.jsx";
 import Header from "./api/Header.jsx";
 import Loggedin from "./pages/homePage/Loggedin.jsx";
 import Footer from "./api/Footer.jsx";
+import Gateway from "./pages/doctor's area/Gateway.jsx";
+
 
 function App() {
   return (
@@ -34,7 +36,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route index={true} element={<Loggedin />} />
         <Route path="/authorization" element={<Authorization />} />
-
+       
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Authorization />} />
           <Route path="/doctors" element={<Doctors />} />
@@ -54,7 +56,10 @@ function App() {
           <Route path="/direct_payments" element={<DirectPaymentVoucher />} />
           <Route path="/administration" element={<SwitchBoard />} />
           <Route path="/services" element={<ServiceForm />} />
+          <Route path="/doctorcheckin" element={<Gateway />} />
+
         </Route>
+
         
         <Route path="*" element={<NotFound />} />
       </Routes>
