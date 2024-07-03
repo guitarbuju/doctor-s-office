@@ -43,7 +43,7 @@ const Appointments = () => {
     
       const postData = {
         patient_dni: patientsInfo.dni,
-        doctor_dni: selectedDoctor,
+        contact_dni: selectedDoctor,
         appointment_date: appointmentDate,
         completed: false,
       };
@@ -113,8 +113,8 @@ const Appointments = () => {
                 <datalist id="drList" name="drList">
                   {doctorsList?.data?.map((doctor) => (
                     <option
-                      key={doctor.doctor_dni}
-                      value={doctor.doctor_dni }
+                      key={doctor.contact_dni}
+                      value={doctor.contact_dni }
                     >
                       {doctor.full_name.toUpperCase()}
                     </option>

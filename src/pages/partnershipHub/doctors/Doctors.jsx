@@ -10,7 +10,7 @@ const Doctors = () => {
   const [recordedInfo, setRecordedInfo] = useState({});
   //Post data to API
   const onSubmit = async (data) => {
-    const splints = { partner_type: "isDoctor", phone: data.contact_phone };
+    const splints = { partner_type: "isDoctor", phone: data.contact_phone,contact_dni:data.id };
     const fixedData = { ...data, ...splints };
     console.log(fixedData);
     try {
@@ -35,7 +35,7 @@ const Doctors = () => {
       />
       <article className="flex flex-col items-center mt-10 text-gray-900">
         <h1 className="text-4xl font-semibold leading-tight ">
-          Doctor&apos;s  Register Form
+          Doctor&apos;s Register Form
         </h1>
         <img
           src="https://www.vinci.com/vinci/actualites-v3.nsf/B031ABB656909551C1257A7900424A73/$file/Hopital_Varsovie-hd.jpg"
@@ -95,7 +95,7 @@ const Doctors = () => {
                 type="text"
                 name="dni"
                 id="dni"
-                {...register("contact_dni", { required: true })}
+                {...register("id", { required: true })}
                 placeholder="Enter your dni number"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
@@ -134,7 +134,7 @@ const Doctors = () => {
               className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
-          <div className="">
+          {/* <div className="">
             <label
               htmlFor="nif"
               className=" block text-base font-medium text-[#07074D]"
@@ -149,7 +149,7 @@ const Doctors = () => {
               placeholder="Enter your Nif"
               className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
-          </div>
+          </div> */}
           <div className="">
             <label
               htmlFor="speciality"
@@ -182,6 +182,40 @@ const Doctors = () => {
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
               </div>
+            </div>
+          </div>
+          <div className="flex justify-between gap-2 mb-2">
+            <div className="">
+              <label
+                htmlFor="username"
+                className=" block text-base font-medium text-[#07074D]"
+              >
+                Username
+              </label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                {...register("username", { required: true })}
+                placeholder="Enter your Username"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+            </div>
+            <div className="">
+              <label
+                htmlFor="Password"
+                className=" block text-base font-medium text-[#07074D]"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                {...register("password", { required: true })}
+                placeholder="Enter your speciality"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
             </div>
           </div>
 

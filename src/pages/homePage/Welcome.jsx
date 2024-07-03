@@ -39,7 +39,7 @@ const Welcome = () => {
       </div>
       <section className="bg-zinc-50">
         <div className="container flex flex-col justify-center  p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+          <div className="hidden lg:flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
             <img
               src={Doctor}
               alt=""
@@ -59,10 +59,10 @@ const Welcome = () => {
               <span className="ml-2 text-black">Patient Management System</span>
             </h1>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center  sm:space-y-0 sm:space-x-4  gap-2 mt-4">
-              <div className="flex justify-center align-middle gap-2">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-4 gap-x-8">
                 <Link
                   to="/patients"
-                  className=" w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
+                  className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
                 >
                   Create Patient
                 </Link>
@@ -72,13 +72,19 @@ const Welcome = () => {
                 >
                   Search Patient
                 </Link>
-              </div>
+             
               <Link
                 to="/administration"
                 className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
               >
                 Back Office
               </Link>
+              <Link
+                to="/doctorcheckin"
+                className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
+              >
+                Doctor&apos;s Area
+              </Link> </div>
             </div>
           </div>
         </div>

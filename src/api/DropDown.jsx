@@ -21,7 +21,7 @@ function DropDown() {
           </Link>
         </MenuItem>
         <MenuItem>
-          <Link className="block data-[focus]:bg-yellow-400 data-[focus]:text-white rounded-md" to="/appointments">
+          <Link className="block data-[focus]:bg-yellow-400 data-[focus]:text-white rounded-md" to="/appointments/list">
             Appointments
           </Link>
         </MenuItem>
