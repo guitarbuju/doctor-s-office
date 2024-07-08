@@ -1,9 +1,22 @@
-
+import { getItemFromLocalStorage } from "../../api/localStorage";
+import PendingPatients from "./components/PendingPatients";
 
 const DoctorDashBoard = () => {
-  return (
-    <div className="text-5xl text-gray-900">DoctorDashBoard</div>
-  )
-}
+  const drInHouse = getItemFromLocalStorage();
+  console.log(drInHouse);
+  const userId = drInHouse?.user?.id;
+  console.log(userId);
 
-export default DoctorDashBoard
+  return (
+    <>
+      <div>
+        <h1 className="text-md text-left text-gray-900">
+          Welcome Dr. {drInHouse?.user?.username}
+        </h1>
+        <PendingPatients userId={ userId }/>
+      </div>
+    </>
+  );
+};
+
+export default DoctorDashBoard;
