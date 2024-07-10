@@ -7,7 +7,7 @@ import SpinnerModal from "../../../api/SpinnerModal";
 const ListTable = ({ appointmentList, reloadAppointmentList }) => {
   console.log("este", appointmentList);
 const [isOpen, setIsOpen]=useState(false)
-
+console.log(appointmentList);
  const urlPatch = `${import.meta.env.VITE_BASE_URL}/admissions`;
 
  

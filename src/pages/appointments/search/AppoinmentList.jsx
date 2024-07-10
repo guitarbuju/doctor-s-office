@@ -19,7 +19,7 @@ const AppoinmentList = () => {
       }
       console.log(data);
       const postDatestoApi = await postPersonData(url, data);
-      setAppointmentList(postDatestoApi);
+      setAppointmentList(postDatestoApi.resultedData);
       setDataForm({ error: null, dates: data });
       reset();
     } catch (error) {
