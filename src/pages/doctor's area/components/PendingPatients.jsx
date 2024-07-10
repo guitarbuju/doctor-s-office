@@ -55,10 +55,10 @@ const PendingPatients = ({ userId }) => {
                 {pendingAdmissionsList?.data?.data?.map((app, index) => (
                   <tr className="text-sm" key={index}>
                     <td className="px-3 py-2 border-x border-y bg-zinc-100">
-                      <p>{app.appointment_id}</p>
+                      <p>{app.id}</p>
                     </td>
                     <td className="px-3 py-2 border-x border-y">
-                      <span>{formatDate(app.appointment_date)}</span>
+                      <span>{formatDate(app.date_created)}</span>
                     </td>
                     <td className="px-3 py-2 border-x border-y bg-zinc-100">
                       <p>{app.patient_full_name}</p>
