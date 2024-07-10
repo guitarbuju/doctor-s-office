@@ -25,6 +25,7 @@ import Header from "./api/Header.jsx";
 import Loggedin from "./pages/homePage/Loggedin.jsx";
 import Footer from "./api/Footer.jsx";
 import Gateway from "./pages/doctor's area/Gateway.jsx";
+import MedicalEntry from "./pages/doctor's area/MedicalEntry.jsx";
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/administration" element={<SwitchBoard />} />
           <Route path="/services" element={<ServiceForm />} />
           <Route path="/doctorcheckin" element={<Gateway />} />
+          <Route path="/medicalentry" element={<MedicalEntry />} />
 
         </Route>
 

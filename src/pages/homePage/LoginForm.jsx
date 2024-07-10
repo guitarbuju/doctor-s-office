@@ -40,7 +40,7 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
 
     try {
       const signInToApi = await postPersonData(url, data);
-      const { user, token } = signInToApi;
+      const { user, token } = signInToApi.resultedData;
       saveItemToLocalStorage(user, token);
       setShowSpinner(true);
       setClicked(true);
