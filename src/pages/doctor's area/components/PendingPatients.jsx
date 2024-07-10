@@ -28,7 +28,7 @@ const PendingPatients = ({ userId }) => {
     }
   }, [userId]);
 
-  console.log(pendingAdmissionsList);
+// console.log(pendingAdmissionsList.status);
 
   return (
     <div className="container p-2 mx-auto sm:p-4 text-gray-900">
@@ -36,7 +36,7 @@ const PendingPatients = ({ userId }) => {
         Pending Patients for Dr.{" "}
         {pendingAdmissionsList?.data?.data[0].doctor_full_name}
       </h1>
-      {pendingAdmissionsList && (
+      {pendingAdmissionsList && pendingAdmissionsList.status === 200 ? (
         <>
           <div className="overflow-x-auto">
             <table className="w-full p-6 text-xs text-left whitespace-nowrap">
@@ -75,8 +75,8 @@ const PendingPatients = ({ userId }) => {
                         className="w-6 h-6 cursor-pointer"
                         onClick={() => {
                           setAdmissionInfo({
-                            id: app.appointment_id,
-                            date: app.appointment_date,
+                            id: app.id,
+                            date: app.date_created,
                             patient: app.patient_full_name,
                             doctor: app.doctor_full_name,
                           });
@@ -89,8 +89,12 @@ const PendingPatients = ({ userId }) => {
               </tbody>
             </table>
           </div>
-        </>
-      )}
+        </>):(<h1
+        className="text-lg text-center text-gray-900"
+        >
+          No Pending Patients
+        </h1>)}
+      
     </div>
   );
 };
