@@ -14,9 +14,9 @@ const Doctors = () => {
     const fixedData = { ...data, ...splints };
     console.log(fixedData);
     try {
-      const response = await postPersonData(url, fixedData);
-
-      const recordDoctorToApi = { ...response.data[0], ...splints };
+      const drData = await postPersonData(url, fixedData);
+      console.log(drData.resultedData);
+      const recordDoctorToApi = { ...drData.resultedData, ...splints };
       console.log(recordDoctorToApi);
       setRecordedInfo(recordDoctorToApi);
       setIsOpen(true);

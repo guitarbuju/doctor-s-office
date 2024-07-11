@@ -40,6 +40,10 @@ const LoginForm = ({ isOpen, setIsOpen }) => {
 
     try {
       const signInToApi = await postPersonData(url, data);
+      if (signInToApi.status !== 200){
+        console.log(signInToApi.status)
+       return  navigate('/authorization')
+      }
       const { user, token } = signInToApi.resultedData;
       saveItemToLocalStorage(user, token);
       setShowSpinner(true);
