@@ -1,5 +1,6 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import MedicalData from './MedicalData';
+import Recipe from './Recipe';
 
 function Tabs() {
   return (
@@ -11,7 +12,7 @@ function Tabs() {
       </TabList>
       <TabPanels>
         <TabPanel><MedicalData/></TabPanel>
-        <TabPanel>Content 2</TabPanel>
+        <TabPanel><Recipe/></TabPanel>
       </TabPanels>
     </TabGroup>
   )
