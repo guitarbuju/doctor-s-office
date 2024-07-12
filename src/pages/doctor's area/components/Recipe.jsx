@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form";
 import { useAppointmentsInfoStore } from "../../../../store";
 import { getDniData, postPersonData } from "../../../api/fetchData";
 import RecipeList from "./RecipeList";
+import PdfMedicalChart from "../pdf/PdfMedicalChart";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { DownloadIcon } from "../../../assets/Icons/DownloadIcon";
 
 const Recipe = () => {
   const [medicineList, setMedicineList] = useState(null);
@@ -24,6 +27,9 @@ const Recipe = () => {
   );
 
   const admission_id = admissionsInfo.id;
+  const patient=admissionsInfo.patient;
+ 
+  console.log(admission_id, patient);
 
   useEffect(() => {
     getAllMedicines();
@@ -149,7 +155,23 @@ const Recipe = () => {
           </div>
         </div>
       </form>
+      <div>
       <RecipeList getRecipeList={getRecipeList} onRemove={fetchRecipeList} />
+      <PDFDownloadLink
+                          document={
+                            <PdfMedicalChart 
+                              admissionId={admission_id}
+                              patient={ patient }
+                            />
+                          }
+                          fileName="ultraorders4.pdf"
+                        >
+                          {({ loading }) =>
+                            loading ? "Loading document..." :  <DownloadIcon/>
+                          }
+                        </PDFDownloadLink>
+      </div>
+      
     </div>
   );
 };
