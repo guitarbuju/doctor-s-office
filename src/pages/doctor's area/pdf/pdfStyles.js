@@ -9,29 +9,26 @@ export const styles = StyleSheet.create({
     paddingRight: 60,
     lineHeight: 1.5,
     flexDirection: "column",
-    backgroundColor: "#F3F4F6",
   },
-  title: {
-    fontSize: "20px",
-    textAlign: "center",
-    fontWeight: "demibold",
-    marginTop: "50px",
+  descriptionWrapper: {
+    display: "flex",
+    justifyContent: "center",
   },
-  titleContainer: {
-    fontSize: 15,
-    textAlign: "center",
+  description: {
+    width: "500px",
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "left",
   },
   headers: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
-    borderBottomWidth: 1,
-    alignItems: "center",
-    height: 24,
-    textAlign: "center",
-    fontStyle: "bold",
-    flexGrow: 1,
-    marginTop: "20px",
+    justifyContent: "space-between",
+    width: "100%",
+    boxSizing: "border-box",
+  },
+  title: {
+    fontSize: "12px",
   },
   trows: {
     display: "flex",
@@ -42,10 +39,33 @@ export const styles = StyleSheet.create({
     height: 24,
     fontStyle: "bold",
     flexGrow: 1,
-    maxWidth: 500,
+    maxWidth: 700,
   },
   td: {
     width: 30,
+    textAlign: "left",
+  },
+  ordersWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 4,
+    fontSize: "10px",
+    borderBottom: "1px solid",
+    borderBottomColor: "#E5E7EB",
+  },
+  titleWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 4,
+    fontSize: "12px",
+    borderBottom: "1px solid",
+    borderBottomColor: "#E5E7EB",
+    fontWeight:"bold"
+  },
+  orderColumn: {
+    flex: 1,
     textAlign: "left",
   },
   chargeTitle: {
@@ -62,8 +82,7 @@ export const styles = StyleSheet.create({
   infoWrapper: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
-    marginTop: "20px",
+    gap: "10px",
   },
   downloadLink: {
     backgroundColor: "#FBBF24",
@@ -76,9 +95,9 @@ export const styles = StyleSheet.create({
     borderRadius: "0.25rem",
     color: "#F3F4F6",
     backgroundColor: "#FBBF24",
-    fontSize:"0.75rem",
-    lineHeight:"1.5rem",
-    height:'1.5rem',
-    textAlign:'center'
+    fontSize: "0.75rem",
+    lineHeight: "1.5rem",
+    height: "1.5rem",
+    textAlign: "center",
   },
 });
