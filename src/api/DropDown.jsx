@@ -40,6 +40,11 @@ function DropDown() {
             Back Office
           </Link>
         </MenuItem>
+        <MenuItem>
+          <Link className="block data-[focus]:bg-yellow-400 data-[focus]:text-white rounded-md" to="/doctorcheckin">
+            Doctor&apos; Area
+          </Link>
+        </MenuItem>
       </MenuItems>
     </Menu>
   );

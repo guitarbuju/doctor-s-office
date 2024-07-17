@@ -52,8 +52,8 @@ console.log(selectedChart);
                 </tr>
               </thead>
               <tbody className="border-b border-gray-300">
-              {selectedChart?.data?.data?.map((recipe)=>(
-                <tr className="text-sm" key={recipe.index}>
+              {selectedChart?.data?.data?.map((recipe, index)=>(
+                <tr className="text-sm" key={index}>
                   <td className="px-3 py-2 border-x border-y bg-zinc-100">
                     <p>{recipe.medicine_title}</p>
                   </td>

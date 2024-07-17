@@ -1,11 +1,16 @@
 import { useAppointmentsInfoStore } from "../../../store";
+import ChartViewer from "./components/ChartViewer";
 import Tabs from "./components/Tabs";
 
 const MedicalEntry = () => {
   const admissionsInfo = useAppointmentsInfoStore(
     (state) => state.appointmentInfo
   );
+
+ 
+
 const admissionId= admissionsInfo.id;
+console.log(admissionsInfo);
 
   return (
     <div>
@@ -22,7 +27,7 @@ const admissionId= admissionsInfo.id;
       </div>
     
       <div>
-        <Tabs />
+       { !admissionsInfo.completed ? <Tabs />:<ChartViewer/>}
       </div>
     </div>
   );
