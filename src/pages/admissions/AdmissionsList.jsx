@@ -14,7 +14,7 @@ const AdmissionsList = () => {
               Search for Pending Admitions
             </h1>
             <p className="text-lg text-gray-900 ">
-              Search information about Admissions entries still pending.
+              Admissions  pending for charges .
             </p>
           </div>
           </div>

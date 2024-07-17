@@ -1,7 +1,7 @@
 import { formatDate } from "../../api/formatDate";
 import { fetchAllPeopleData } from "../../api/fetchData";
 import { useEffect, useState } from "react";
-// import { useAppointmentsInfoStore } from "../../../store";
+import { useAppointmentsInfoStore } from "../../../store";
 import { useNavigate } from "react-router-dom";
 
 const AdmissionsTable = () => {
@@ -9,6 +9,10 @@ const AdmissionsTable = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const url = `${BASE_URL}/admissions/pending`;
   const navigate = useNavigate();
+
+  const setAdmissionInfo = useAppointmentsInfoStore(
+    (state)=>state.setAppointmentInfo
+  )
 
   useEffect(() => {
     const getAdmittedPatients = async () => {
@@ -82,13 +86,13 @@ const AdmissionsTable = () => {
                       <button
                         type="button"
                         onClick={() => {
-                        //  setAdmissionInfo({
-                        //     date: adm.date_created,
-                        //     id: adm.id,
-                        //     doctor: adm.doctor_full_name,
-                        //     patient: adm.patient_full_name,
-                        //     completed:adm.completed
-                        //   });
+                         setAdmissionInfo({
+                            date: adm.date_created,
+                            id: adm.id,
+                            doctor: adm.doctor_full_name,
+                            patient: adm.patient_full_name,
+                            completed:adm.completed
+                          });
                           // navigate('/charges')
                           navigate("/charges/add");
                         }}
