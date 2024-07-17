@@ -1,7 +1,7 @@
 import { formatDate } from "../../api/formatDate";
 import { fetchAllPeopleData } from "../../api/fetchData";
 import { useEffect, useState } from "react";
-import { useAppointmentsInfoStore } from "../../../store";
+// import { useAppointmentsInfoStore } from "../../../store";
 import { useNavigate } from "react-router-dom";
 
 const AdmissionsTable = () => {
@@ -23,11 +23,22 @@ const AdmissionsTable = () => {
     getAdmittedPatients();
   }, []);
 
-  const setAdmissionInfo = useAppointmentsInfoStore(
-    (state) => state.setAppointmentInfo
-  );
+  // const setAdmissionInfo = useAppointmentsInfoStore(
+  //   (state) => state.setAppointmentInfo
+  // );
+
+  // const admissionToStore= useAppointmentsInfoStore(
+  //   (state) => state.appointmentInfo
+  // );
+
+  
+
+  // useEffect(() => {
+  //   console.log("Current store state:", admissionToStore);
+  // }, [admissionToStore]);
 
   console.log(admittedList);
+
 
   return (
     <div>
@@ -64,16 +75,20 @@ const AdmissionsTable = () => {
                     <td className="px-3 py-2 border-x border-y bg-zinc-100">
                       <p>{adm.doctor_full_name}</p>
                     </td>
+                    <td className="hidden">
+                      <p>{adm.completed}</p>
+                    </td>
                     <td className="px-3 py-2 flex justify-center align-middle border-x border-y ">
                       <button
                         type="button"
                         onClick={() => {
-                          setAdmissionInfo({
-                            id: adm.id,
-                            date: adm.date_created,
-                            doctor: adm.doctor_full_name,
-                            patient: adm.patient_full_name,
-                          });
+                        //  setAdmissionInfo({
+                        //     date: adm.date_created,
+                        //     id: adm.id,
+                        //     doctor: adm.doctor_full_name,
+                        //     patient: adm.patient_full_name,
+                        //     completed:adm.completed
+                        //   });
                           // navigate('/charges')
                           navigate("/charges/add");
                         }}

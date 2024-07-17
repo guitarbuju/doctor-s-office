@@ -5,7 +5,7 @@ const AdmissionCharger = () => {
     const admissionsInfo = useAppointmentsInfoStore(
         (state) => state.appointmentInfo
       );
-
+console.log(admissionsInfo);
   return (
     <div>
     <section className="py-6 text-gray-900 flex justify-around">

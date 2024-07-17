@@ -22,6 +22,7 @@ export const useAppointmentsInfoStore = create((set) => ({
     id: "",
     doctor: "",
     patient: "",
+    completed:""
   },
   setAppointmentInfo: (info) => {
     console.log("Setting appointment info:", info);
@@ -34,6 +35,7 @@ export const useAppointmentsInfoStore = create((set) => ({
         id: "",
         doctor: "",
         patient: "",
+        completed:""
       },
     }),
 }));

@@ -3,7 +3,10 @@ import MedicalData from './MedicalData';
 import Recipe from './Recipe';
 import ChartViewer from './ChartViewer';
 
-function Tabs() {
+function Tabs({ admissionCompleted }) {
+
+console.log(admissionCompleted);
+
   return (
     <TabGroup>
       <TabList>
