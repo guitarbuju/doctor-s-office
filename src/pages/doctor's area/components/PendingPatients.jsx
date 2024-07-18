@@ -39,7 +39,7 @@ const PendingPatients = ({ userId }) => {
     }
   }, [userId, completed]);
 
-  console.log(completed);
+  console.log(pendingAdmissionsList);
 
   return (
     <div className="container p-2 mx-auto sm:p-4 text-gray-900">

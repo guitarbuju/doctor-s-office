@@ -1,26 +1,44 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {
-  getItemFromLocalStorage,
-  // removeItemFromLocalStorage,
-} from "../../api/localStorage";
-// import { useNavigate } from "react-router";
+import { getItemFromLocalStorage } from "../../api/localStorage";
 import Doctor from "./../../assets/Doctor-PNG-Images.png";
+import { getStatusData } from "../../api/fetchData";
+
 
 const Welcome = () => {
   const [retrievedItem, setRetrievedItem] = useState(null);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     const authData = getItemFromLocalStorage();
     setRetrievedItem(authData);
   }, []);
 
-  // const handleLogout = () => {
-  //   removeItemFromLocalStorage();
-  //   setRetrievedItem(null); // Clear the retrieved item from the state
-  //   navigate("/");
-  // };
+  const [pendingAdmissionsList, setPendingAdmissionsList] = useState(null);
+
+  const userId = retrievedItem?.user?.id;
+
+  const url = `${
+    import.meta.env.VITE_BASE_URL
+  }/admissions/pending/:dni_and_status`;
+
+  const getPendingAdmissionsById = async () => {
+    try {
+      const getAdmissions = await getStatusData(url, userId, false);
+      setPendingAdmissionsList(getAdmissions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      getPendingAdmissionsById();
+    }
+  }, [userId]);
+
+  const pendingPatients=pendingAdmissionsList?.data?.rowCount;
+
+  console.log(pendingAdmissionsList);
 
   return (
     <div>
@@ -72,19 +90,25 @@ const Welcome = () => {
                 >
                   Search Patient
                 </Link>
-             
-              <Link
-                to="/administration"
-                className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
-              >
-                Back Office
-              </Link>
-              <Link
-                to="/doctorcheckin"
-                className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
-              >
-                Doctor&apos;s Area
-              </Link> </div>
+
+                <Link
+                  to="/administration"
+                  className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
+                >
+                  Back Office
+                </Link>
+              
+                
+                  <Link
+                    to="/doctorcheckin"
+                    className="w-60 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center"
+                  >
+                    Doctor&apos;s Area { pendingPatients && <span className="absolute ml-48 -mt-12 text-md w-6 h-6 bg-red-500 text-semibold text-white text-center rounded-full z-50 flex justify-center align-middle ">
+                   {pendingAdmissionsList?.data?.rowCount}
+                  </span>}
+                  </Link>
+            
+              </div>{" "}
             </div>
           </div>
         </div>
