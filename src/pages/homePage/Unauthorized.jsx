@@ -25,7 +25,7 @@ const Welcome = () => {
 			<div className="flex justify-center align-middle gap-2">
 			<h1 className="text-10xl font-bold leading-none sm:text-6xl text-yellow-400 -mt-8 mb-4">UNAUTHORIZED!!!!!!</h1>
 			</div>
-				<Link to='/home' className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center">Home</Link>
+				<Link to='/' className=" w-72 px-8 py-3 text-md font-light rounded outline outline-1 hover:bg-yellow-400 hover:text-white text-center">Home</Link>
 			</div>
 		</div>
 	</div>
