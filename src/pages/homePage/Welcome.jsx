@@ -19,7 +19,7 @@ const Welcome = () => {
 
   const url = `${
     import.meta.env.VITE_BASE_URL
-  }/admissions/pending/:dni_and_status`;
+  }/admissions/pending/`;
 
   const getPendingAdmissionsById = async () => {
     try {
